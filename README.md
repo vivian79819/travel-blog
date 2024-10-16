@@ -1,11 +1,16 @@
-# Final project - A personal blogging system - Team $GROUPNAME
+# Final project - A personal blogging system - Team Kind Koalas
 
 This repository contains a starting point for your team's final project. We look forward to seeing your progress and your final results this semester!
 
 Your team should update this README to include the information required, as presented in the project handout available on Canvas.
 
 Your team members are:
-$TEAMMEMBERS
+- Zhaozhao Huang
+- Jamal Rizki
+- Vivian Yeh
+- Lana Fernandes
+- Lucas You
+- Christopher Lei Sam
 
 ## Development Environment Setup & Commit Guidelines
 
@@ -42,4 +47,4 @@ If team-members don't need to use PR, then they should be working on feature bra
 
 Correct and **timely** execution of the PR process with evidence of good code review can contribute **significantly** to a better codebase and team member collaboration.
 
-$IMAGE
+![](./backend/public/images/Kind%20Koalas.webp)
