@@ -1,14 +1,15 @@
 -- TODO Replace this SQL initialization script with an init script for your own database schema.
 
-DROP TABLE IF EXISTS Messages;
+DROP TABLE IF EXISTS Users;
 
--- Create messages table
-CREATE TABLE Messages (
+CREATE TABLE Users (
     id INTEGER NOT NULL PRIMARY KEY,
-    message TEXT
+    username TEXT UNIQUE,
+    firstName TEXT,
+    lastName TEXT,
+    password TEXT,  
+    blurb TEXT,
+    selectedAvatar TEXT,  
+    email TEXT NOT NULL,   
+    dob DATE NOT NULL      
 );
-
--- Dummy messages data
-INSERT INTO Messages (message) VALUES
-    ('Hello, world!'),
-    ('Gotta catch ''em all!');
