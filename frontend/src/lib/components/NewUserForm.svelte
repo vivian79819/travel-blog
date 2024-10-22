@@ -17,11 +17,11 @@
 
   let selectedAvatar = "";
   let avatarOptions = [
-    { name: "Avatar 1", src: `${PUBLIC_IMAGES_URL}/avatars/avatar1.png` },
-    { name: "Avatar 2", src: `${PUBLIC_IMAGES_URL}/avatars/avatar2.png` },
-    { name: "Avatar 3", src: `${PUBLIC_IMAGES_URL}/avatars/avatar3.png` },
-    { name: "Avatar 4", src: `${PUBLIC_IMAGES_URL}/avatars/avatar4.png` },
-    { name: "Avatar 5", src: `${PUBLIC_IMAGES_URL}/avatars/avatar5.png` },
+    { name: "Avatar 1", src: "avatars/avatar1.png" },
+    { name: "Avatar 2", src: "avatars/avatar2.png" },
+    { name: "Avatar 3", src: "avatars/avatar3.png" },
+    { name: "Avatar 4", src: "avatars/avatar4.png" },
+    { name: "Avatar 5", src: "avatars/avatar5.png" },
   ];
   function checkPasswords() {
     passwordsMatch = password === confirmPassword;
@@ -64,14 +64,14 @@
         class:avatar-selected={selectedAvatar === avatar.src}
         on:click={() => (selectedAvatar = avatar.src)}
       >
-        <img src={avatar.src} alt={avatar.name} />
+        <img src={`${PUBLIC_IMAGES_URL}/${avatar.src}`} alt={avatar.name} />
       </button>
     {/each}
   </div>
   {#if selectedAvatar}
     <p>
       Your Avatar: <img
-        src={selectedAvatar}
+        src={`${PUBLIC_IMAGES_URL}/${selectedAvatar}`}
         alt="Selected Avatar"
         class="avatar-selected-display"
       />
