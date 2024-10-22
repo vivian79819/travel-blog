@@ -1,14 +1,13 @@
 import express from "express";
 import { requiresAuthentication } from "../../middleware/auth-middleware.js";
-import { createUser, deleteUser, updateUser,getUserWithUsername } from "../../data/users-dao.js";
+import { createUser, deleteUser, updateUser, getUserWithUsername } from "../../data/users-dao.js";
+import { getArticleByUserId } from "../../data/articles-dao.js";
 
 const router = express.Router();
-
 
 router.get("/me", requiresAuthentication, (req, res) => {
   return res.json(req.user);
 });
-
 
 router.patch("/me", requiresAuthentication, async (req, res) => {
   try {
@@ -26,7 +25,6 @@ router.post("/", async (req, res) => {
     const location = `/api/users/${newUser.id}`;
     return res.status(201).location(location).json(newUser);
   } catch (err) {
-    
     return res.status(422).json(err.errors);
   }
 });
@@ -36,26 +34,29 @@ router.delete("/:id", async (req, res) => {
   return res.sendStatus(204);
 });
 
-router.get('/check-username', async (req, res) => {
+router.get("/check-username", async (req, res) => {
   const { username } = req.query; // Get the username from query parameters
 
   // Validate if the username parameter is provided
   if (!username) {
-    return res.status(400).json({ error: 'Username query parameter is required' });
+    return res.status(400).json({ error: "Username query parameter is required" });
   }
 
-    // Check if the username exists in the database
-    const user = await getUserWithUsername(username);
+  // Check if the username exists in the database
+  const user = await getUserWithUsername(username);
 
-    if (user) {
-      // If user exists, return that the username is not available
-      return res.json({ available: false });
-    } else {
-      // If user doesn't exist, return that the username is available
-      return res.json({ available: true });
-    }
-  
+  if (user) {
+    // If user exists, return that the username is not available
+    return res.json({ available: false });
+  } else {
+    // If user doesn't exist, return that the username is available
+    return res.json({ available: true });
+  }
 });
 
+router.get("/articles", requiresAuthentication, async (req, res) => {
+  const articles = await getArticleByUserId(req.user.id);
+  return res.json(articles);
+});
 
 export default router;

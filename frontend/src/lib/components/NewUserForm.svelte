@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
+  import { PUBLIC_IMAGES_URL } from "$env/static/public";
   let username = "";
   let firstName = "";
   let lastName = "";
@@ -15,11 +16,11 @@
 
   let selectedAvatar = "";
   let avatarOptions = [
-    { name: "Avatar 1", src: "/avatars/avatar1.png" },
-    { name: "Avatar 2", src: "/avatars/avatar2.png" },
-    { name: "Avatar 3", src: "/avatars/avatar3.png" },
-    { name: "Avatar 4", src: "/avatars/avatar4.png" },
-    { name: "Avatar 5", src: "/avatars/avatar5.png" },
+    { name: "Avatar 1", src: `${PUBLIC_IMAGES_URL}/avatars/avatar1.png` },
+    { name: "Avatar 2", src: `${PUBLIC_IMAGES_URL}/avatars/avatar2.png` },
+    { name: "Avatar 3", src: `${PUBLIC_IMAGES_URL}/avatars/avatar3.png` },
+    { name: "Avatar 4", src: `${PUBLIC_IMAGES_URL}/avatars/avatar4.png` },
+    { name: "Avatar 5", src: `${PUBLIC_IMAGES_URL}/avatars/avatar5.png` },
   ];
   function checkPasswords() {
     passwordsMatch = password === confirmPassword;
