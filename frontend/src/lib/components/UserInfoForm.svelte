@@ -81,7 +81,7 @@
 <form on:submit|preventDefault={handleSave}>
   <p>
     Your Avatar: <button type="button" on:click={() => toggleAvatarSelection()}
-      ><img src={`${PUBLIC_IMAGES_URL}/${selectedAvatar}`} alt="Selected Avatar" /></button
+      ><img src={selectedAvatar} alt="Selected Avatar" /></button
     >
   </p>
   {#if showAvatarSelector}

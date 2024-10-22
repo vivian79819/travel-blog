@@ -1,7 +1,8 @@
 <script>
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
-  import { PUBLIC_IMAGES_URL } from "$env/static/public";
+  import { PUBLIC_IMAGES_URL,PUBLIC_API_BASE_URL } from "$env/static/public";
+
   let username = "";
   let firstName = "";
   let lastName = "";
@@ -35,7 +36,7 @@
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/users/check-username?username=${username}`
+        `${PUBLIC_API_BASE_URL}/users/check-username?username=${username}`
       );
       const data = await response.json();
 
