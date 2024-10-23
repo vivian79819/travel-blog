@@ -54,24 +54,30 @@
 
     if (success) invalidate(USER_URL);
   }
+  let deleteSuccess = false;
+  let deleteError = false;
+
   async function handleDeleteUser(e) {
     const response = await fetch(`${PUBLIC_API_BASE_URL}/users/${user.id}`, {
       method: "DELETE"
     });
 
     if (response.status === 204) {
-      // Invalidating this URL will cause our +page.js load() function to rerun, because that load() function
-      // depends on this URL.
-
-      alert(`Deleted!`);
-      const deleteToken = await fetch(AUTH_URL, {
-        method: "DELETE",
-        credentials: "include"
-      });
-      await invalidateAll();
-      goto("/");
+      deleteSuccess = true;
+      deleteError = false;
+      
+      
+      setTimeout(async () => {
+        await fetch(AUTH_URL, {
+          method: "DELETE",
+          credentials: "include"
+        });
+        await invalidateAll();
+        goto("/");
+      }, 2000); 
     } else {
-      alert(`Unexpected status code received: ${response.status}`);
+      deleteError = true;
+      deleteSuccess = false;
     }
   }
 
@@ -149,7 +155,12 @@
       {#if success}<span class="success">Saved!</span>{/if}
     </form>
   {/if}
+
+  
+  {#if deleteSuccess}<span class="success">Account deleted! Redirecting...</span>{/if}
+  {#if deleteError}<span class="error">Could not delete account!</span>{/if}
 </div>
+
 
 <style>
   .user-profile {
@@ -260,5 +271,18 @@
     display: flex;
     flex-direction: row;
     gap: 10px;
+  }
+  .success {
+    color: green;
+    margin-top: 10px;
+    font-weight: bold; 
+    font-size: 1.2em; 
+  }
+
+  .error {
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
   }
 </style>
