@@ -26,11 +26,11 @@
     { name: "Avatar 2", src: "avatars/avatar2.png" },
     { name: "Avatar 3", src: "avatars/avatar3.png" },
     { name: "Avatar 4", src: "avatars/avatar4.png" },
-    { name: "Avatar 5", src: "avatars/avatar5.png" },
+    { name: "Avatar 5", src: "avatars/avatar5.png" }
   ];
 
   async function handleSave() {
-    console.log('Selected Avatar:', selectedAvatar);
+    console.log("Selected Avatar:", selectedAvatar);
     error = false;
     success = false;
 
@@ -65,8 +65,7 @@
     if (response.status === 204) {
       deleteSuccess = true;
       deleteError = false;
-      
-      
+
       setTimeout(async () => {
         await fetch(AUTH_URL, {
           method: "DELETE",
@@ -74,7 +73,7 @@
         });
         await invalidateAll();
         goto("/");
-      }, 2000); 
+      }, 2000);
     } else {
       deleteError = true;
       deleteSuccess = false;
@@ -105,7 +104,7 @@
         <hr class="dashed-line" />
       </div>
       <div class="button-container">
-        <button on:click={() => editing = true}>Edit</button>
+        <button on:click={() => (editing = true)}>Edit</button>
         <button on:click|preventDefault={handleDeleteUser}>Delete Account</button>
       </div>
     </div>
@@ -121,7 +120,8 @@
         <label for="avatar">Choose an avatar:</label>
         <div class="avatar-selection">
           {#each avatarOptions as avatar}
-            <button type="button"
+            <button
+              type="button"
               class="avatar-option"
               class:avatar-selected={selectedAvatar === avatar.src}
               on:click={() => (selectedAvatar = avatar.src)}
@@ -156,11 +156,9 @@
     </form>
   {/if}
 
-  
   {#if deleteSuccess}<span class="success">Account deleted! Redirecting...</span>{/if}
   {#if deleteError}<span class="error">Could not delete account!</span>{/if}
 </div>
-
 
 <style>
   .user-profile {
@@ -172,15 +170,16 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
-  .profile-display, .edit-form {
+  .profile-display,
+  .edit-form {
     display: flex;
     flex-direction: column;
   }
 
   .avatar-container {
     display: flex;
-    align-items: center; 
-    margin-bottom: 15px; 
+    align-items: center;
+    margin-bottom: 15px;
   }
 
   .avatar-container button {
@@ -188,7 +187,7 @@
   }
 
   .user-info {
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
   }
 
   .dashed-line {
@@ -198,7 +197,7 @@
 
   .button-container {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
   }
 
   label {
@@ -275,8 +274,8 @@
   .success {
     color: green;
     margin-top: 10px;
-    font-weight: bold; 
-    font-size: 1.2em; 
+    font-weight: bold;
+    font-size: 1.2em;
   }
 
   .error {
