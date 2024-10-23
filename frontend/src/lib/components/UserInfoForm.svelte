@@ -4,6 +4,7 @@
   import { PUBLIC_API_BASE_URL } from "$env/static/public";
   import { goto } from "$app/navigation";
   import { AUTH_URL } from "$lib/js/api-urls.js";
+  import { PUBLIC_IMAGES_URL } from "$env/static/public";
 
   export let user;
 
@@ -18,12 +19,19 @@
   let success = false;
 
   let showAvatarSelector = false;
+  // let avatarOptions = [
+  //   { name: "Avatar 1", src: `${PUBLIC_IMAGES_URL}/avatars/avatar1.png` },
+  //   { name: "Avatar 2", src: `${PUBLIC_IMAGES_URL}/avatars/avatar2.png` },
+  //   { name: "Avatar 3", src: `${PUBLIC_IMAGES_URL}/avatars/avatar3.png` },
+  //   { name: "Avatar 4", src: `${PUBLIC_IMAGES_URL}/avatars/avatar4.png` },
+  //   { name: "Avatar 5", src: `${PUBLIC_IMAGES_URL}/avatars/avatar5.png` },
+  // ];
   let avatarOptions = [
-    { name: "Avatar 1", src: "/avatars/avatar1.png" },
-    { name: "Avatar 2", src: "/avatars/avatar2.png" },
-    { name: "Avatar 3", src: "/avatars/avatar3.png" },
-    { name: "Avatar 4", src: "/avatars/avatar4.png" },
-    { name: "Avatar 5", src: "/avatars/avatar5.png" }
+    { name: "Avatar 1", src: "avatars/avatar1.png" },
+    { name: "Avatar 2", src: "avatars/avatar2.png" },
+    { name: "Avatar 3", src: "avatars/avatar3.png" },
+    { name: "Avatar 4", src: "avatars/avatar4.png" },
+    { name: "Avatar 5", src: "avatars/avatar5.png" },
   ];
 
   async function handleSave() {
@@ -80,7 +88,7 @@
 <form on:submit|preventDefault={handleSave}>
   <p>
     Your Avatar: <button type="button" on:click={() => toggleAvatarSelection()}
-      ><img src={selectedAvatar} alt="Selected Avatar" /></button
+      ><img src={`${PUBLIC_IMAGES_URL}/${selectedAvatar}`} alt="Selected Avatar" /></button
     >
   </p>
   {#if showAvatarSelector}
@@ -92,7 +100,7 @@
           class:avatar-selected={selectedAvatar === avatar.src}
           on:click={() => (selectedAvatar = avatar.src)}
         >
-          <img src={avatar.src} alt={avatar.name} />
+          <img src={`${PUBLIC_IMAGES_URL}/${avatar.src}`} alt={avatar.name} />
         </button>
       {/each}
     </div>

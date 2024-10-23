@@ -32,11 +32,11 @@ CREATE TABLE Articles (
 
 INSERT INTO Users (username, firstName, lastName, password, blurb, selectedAvatar, email, dob)
 VALUES
-    ('john_doe', 'John', 'Doe', '$2b$10$fhC03I3hcXX9alkDeES/suyoXtMTqNTxXOS1VZXqoGHcWfXjtGK5O', 'I love coding', '/avatars/avatar2.png', 'john.doe@example.com', '1990-01-15'),
-    ('jane_smith', 'Jane', 'Smith', '$2b$10$fhC03I3hcXX9alkDeES/suyoXtMTqNTxXOS1VZXqoGHcWfXjtGK5O', 'Coffee enthusiast', '/avatars/avatar2.png', 'jane.smith@example.com', '1992-06-20'),
-    ('michael_brown', 'Michael', 'Brown', '$2b$10$fhC03I3hcXX9alkDeES/suyoXtMTqNTxXOS1VZXqoGHcWfXjtGK5O', 'Tech geek', '/avatars/avatar2.png', 'michael.brown@example.com', '1988-11-30'),
-    ('lisa_wong', 'Lisa', 'Wong', '$2b$10$fhC03I3hcXX9alkDeES/suyoXtMTqNTxXOS1VZXqoGHcWfXjtGK5O', 'Art lover', '/avatars/avatar2.png', 'lisa.wong@example.com', '1995-07-14'),
-    ('david_jones', 'David', 'Jones', '$2b$10$fhC03I3hcXX9alkDeES/suyoXtMTqNTxXOS1VZXqoGHcWfXjtGK5O', 'Fitness addict', '/avatars/avatar2.png', 'david.jones@example.com', '1987-04-22');
+    ('john_doe', 'John', 'Doe', '$2b$10$fhC03I3hcXX9alkDeES/suyoXtMTqNTxXOS1VZXqoGHcWfXjtGK5O', 'I love coding', 'avatars/avatar1.png', 'john.doe@example.com', '1990-01-15'),
+    ('jane_smith', 'Jane', 'Smith', '$2b$10$fhC03I3hcXX9alkDeES/suyoXtMTqNTxXOS1VZXqoGHcWfXjtGK5O', 'Coffee enthusiast', 'avatars/avatar2.png', 'jane.smith@example.com', '1992-06-20'),
+    ('michael_brown', 'Michael', 'Brown', '$2b$10$fhC03I3hcXX9alkDeES/suyoXtMTqNTxXOS1VZXqoGHcWfXjtGK5O', 'Tech geek', 'avatars/avatar3.png', 'michael.brown@example.com', '1988-11-30'),
+    ('lisa_wong', 'Lisa', 'Wong', '$2b$10$fhC03I3hcXX9alkDeES/suyoXtMTqNTxXOS1VZXqoGHcWfXjtGK5O', 'Art lover', 'avatars/avatar4.png', 'lisa.wong@example.com', '1995-07-14'),
+    ('david_jones', 'David', 'Jones', '$2b$10$fhC03I3hcXX9alkDeES/suyoXtMTqNTxXOS1VZXqoGHcWfXjtGK5O', 'Fitness addict', 'avatars/avatar5.png', 'david.jones@example.com', '1987-04-22');
 
 
 INSERT INTO Articles (title, description, content, image, userId, date) VALUES

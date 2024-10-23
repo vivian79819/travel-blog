@@ -1,6 +1,8 @@
 <script>
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
+  import { PUBLIC_IMAGES_URL,PUBLIC_API_BASE_URL } from "$env/static/public";
+
   let username = "";
   let firstName = "";
   let lastName = "";
@@ -15,11 +17,11 @@
 
   let selectedAvatar = "";
   let avatarOptions = [
-    { name: "Avatar 1", src: "/avatars/avatar1.png" },
-    { name: "Avatar 2", src: "/avatars/avatar2.png" },
-    { name: "Avatar 3", src: "/avatars/avatar3.png" },
-    { name: "Avatar 4", src: "/avatars/avatar4.png" },
-    { name: "Avatar 5", src: "/avatars/avatar5.png" },
+    { name: "Avatar 1", src: "avatars/avatar1.png" },
+    { name: "Avatar 2", src: "avatars/avatar2.png" },
+    { name: "Avatar 3", src: "avatars/avatar3.png" },
+    { name: "Avatar 4", src: "avatars/avatar4.png" },
+    { name: "Avatar 5", src: "avatars/avatar5.png" },
   ];
   function checkPasswords() {
     passwordsMatch = password === confirmPassword;
@@ -34,7 +36,7 @@
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/users/check-username?username=${username}`
+        `${PUBLIC_API_BASE_URL}/users/check-username?username=${username}`
       );
       const data = await response.json();
 
@@ -62,14 +64,14 @@
         class:avatar-selected={selectedAvatar === avatar.src}
         on:click={() => (selectedAvatar = avatar.src)}
       >
-        <img src={avatar.src} alt={avatar.name} />
+        <img src={`${PUBLIC_IMAGES_URL}/${avatar.src}`} alt={avatar.name} />
       </button>
     {/each}
   </div>
   {#if selectedAvatar}
     <p>
       Your Avatar: <img
-        src={selectedAvatar}
+        src={`${PUBLIC_IMAGES_URL}/${selectedAvatar}`}
         alt="Selected Avatar"
         class="avatar-selected-display"
       />

@@ -33,4 +33,9 @@ export async function getArticleById(id) {
     JOIN Users ON Articles.userId = Users.id
     WHERE Articles.id = ?`, id);
   return article;
+};
+export async function getArticleByUserId(userId) {
+  const db= await getDatabase();
+  const articles=await db.all("SELECT * FROM Articles WHERE userId=?",userId);
+  return articles;
 }

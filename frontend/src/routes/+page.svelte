@@ -2,6 +2,7 @@
 
 <script>
   import ArticleCard from '$lib/components/ArticleCard.svelte';
+  import { PUBLIC_IMAGES_URL } from "$env/static/public";
   import MessageView from "$lib/components/MessageView.svelte";
   export let data;
   $: articles = data.articles || [];
@@ -20,7 +21,7 @@
     <div class="welcome">
       <h1>Welcome back, {data.user.firstName}!</h1>
       <div class="info">
-        <img src={data.user.selectedAvatar}  class="avatar"/>
+        <img src={`${PUBLIC_IMAGES_URL}/${data.user.selectedAvatar}`} alt="{data.user.username}" class="avatar"/>
         <div class="details">
           <p class="username">@{data.user.username}</p>
           <p class="blurb">{data.user.blurb}</p>
