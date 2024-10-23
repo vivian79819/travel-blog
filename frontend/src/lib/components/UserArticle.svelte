@@ -22,8 +22,8 @@
     </div>
 
     <div class="action-buttons">
-      <button class="edit-button" title="Edit your article" on:click|stopPropagation>Edit</button>
-      <button class="delete-button" title="Delete your article" on:click|stopPropagation
+      <button class="edit-button" title="Edit your article" on:click|preventDefault>Edit</button>
+      <button class="delete-button" title="Delete your article" on:click|preventDefault
         >Delete</button
       >
     </div>
