@@ -28,7 +28,7 @@
         </div>
       </div>
       
-      {#if userArticles.length > 0}
+      <!-- {#if userArticles.length > 0}
         <section class="articles">
           <h2>My Travel Stories</h2>
           <div class="grid">
@@ -37,7 +37,7 @@
             {/each}
           </div>
         </section>
-      {/if}
+      {/if}  -->
       
       <div class="actions">
         <a href="/create" class="article-btn">Write New Travel Article</a>
@@ -46,7 +46,7 @@
   {/if}
 
   <section class="all-articles">
-    <h2>{data.isLoggedIn ? 'Other TravOtherl Stories' : 'Travel Stories'}</h2>
+    <h2>Travel Stories</h2>
     
     {#if articles.length === 0}
       <p>Loading articles...</p>
@@ -58,7 +58,7 @@
       {/if}
 
       <section class="article-grid">
-        {#each displayArticles as article (article.id)}
+        {#each otherArticles as article (article.id)}
           <ArticleCard {article} />
         {/each}
       </section>

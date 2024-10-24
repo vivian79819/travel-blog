@@ -1,5 +1,5 @@
 import express from "express";
-import { getArticles, addArticles, getArticleById } from "../../data/articles-dao.js";
+import { getArticles, addArticles, getArticleById, deleteArticleById } from "../../data/articles-dao.js";
 import { requiresAuthentication } from "../../middleware/auth-middleware.js";
 import multer from 'multer';
 import path from 'path';
@@ -51,6 +51,17 @@ router.get("/:id", async (req, res) => {
     res.json(article);
   } else {
     return res.sendStatus(404);
+  }
+});
+
+router.delete("/:id", requiresAuthentication, async (req, res) => {
+  const articleId = req.params.id;
+  try {
+      await deleteArticleById(articleId);
+      res.sendStatus(200);
+  } catch (error) {
+      console.error("Error deleting article:", error);
+      res.sendStatus(500);
   }
 });
 
