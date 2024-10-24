@@ -39,3 +39,9 @@ export async function getArticleByUserId(userId) {
   const articles=await db.all("SELECT * FROM Articles WHERE userId=?",userId);
   return articles;
 }
+
+export async function deleteArticleById(id) {
+  const db = await getDatabase();
+  await db.run("DELETE FROM Articles WHERE id = ?", id);
+  return true;
+}

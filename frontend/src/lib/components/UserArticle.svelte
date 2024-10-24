@@ -1,8 +1,25 @@
 <script>
   export let article;
   export let user;
-  import { PUBLIC_IMAGES_URL } from "$env/static/public";
+  import { PUBLIC_IMAGES_URL, PUBLIC_API_BASE_URL } from "$env/static/public";
+  import { goto } from "$app/navigation";
   let featured = false;
+
+  async function handleDelete() {
+  try {
+    const response = await fetch(`${PUBLIC_API_BASE_URL}/articles/${article.id}`, {
+      method: "DELETE",
+      credentials: "include"
+    });
+    if (response.ok) {
+      goto('/articles');
+    } else {
+      console.error(response.status);
+    }
+  } catch (error) {
+    console.error( error);
+  }
+}
 </script>
 
 <a href={`/article/${article.id}`} class="article-card {featured ? 'featured' : ''}">
@@ -23,7 +40,7 @@
 
     <div class="action-buttons">
       <button class="edit-button" title="Edit your article" on:click|preventDefault>Edit</button>
-      <button class="delete-button" title="Delete your article" on:click|preventDefault
+      <button class="delete-button" title="Delete your article" on:click|preventDefault={handleDelete}
         >Delete</button
       >
     </div>
