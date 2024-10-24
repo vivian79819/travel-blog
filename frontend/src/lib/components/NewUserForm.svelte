@@ -16,13 +16,20 @@
   let passwordsMatch = true;
 
   let selectedAvatar = "";
-  let avatarOptions = [
-    { name: "Avatar 1", src: "avatars/avatar1.png" },
-    { name: "Avatar 2", src: "avatars/avatar2.png" },
-    { name: "Avatar 3", src: "avatars/avatar3.png" },
-    { name: "Avatar 4", src: "avatars/avatar4.png" },
-    { name: "Avatar 5", src: "avatars/avatar5.png" },
-  ];
+  let avatarOptions = [];
+
+  // Fetch avatars from backend
+  const fetchAvatars = async () => {
+    try {
+      const response = await fetch(`${PUBLIC_API_BASE_URL}/avatars`);
+      avatarOptions = await response.json();
+    } catch (error) {
+      console.error("Failed to fetch avatars:", error);
+    }
+  };
+
+  // Fetch avatars when the component is mounted
+  fetchAvatars();
   function checkPasswords() {
     passwordsMatch = password === confirmPassword;
   }
