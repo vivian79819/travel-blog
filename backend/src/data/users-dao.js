@@ -82,7 +82,7 @@ const createUserSchema = yup
     password: yup.string().min(5).required(),
     dob: yup.date().required(),
     email: yup.string().email().required(),
-    blurb: yup.string().required()
+    blurb: yup.string().nullable()
   })
   .required();
 

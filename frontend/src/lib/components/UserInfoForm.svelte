@@ -19,23 +19,18 @@
   let success = false;
 
   let showAvatarSelector = false;
-  // let avatarOptions = [
-  //   { name: "Avatar 1", src: `${PUBLIC_IMAGES_URL}/avatars/avatar1.png` },
-  //   { name: "Avatar 2", src: `${PUBLIC_IMAGES_URL}/avatars/avatar2.png` },
-  //   { name: "Avatar 3", src: `${PUBLIC_IMAGES_URL}/avatars/avatar3.png` },
-  //   { name: "Avatar 4", src: `${PUBLIC_IMAGES_URL}/avatars/avatar4.png` },
-  //   { name: "Avatar 5", src: `${PUBLIC_IMAGES_URL}/avatars/avatar5.png` },
-  // ];
+  let editing = false;
+
   let avatarOptions = [
     { name: "Avatar 1", src: "avatars/avatar1.png" },
     { name: "Avatar 2", src: "avatars/avatar2.png" },
     { name: "Avatar 3", src: "avatars/avatar3.png" },
     { name: "Avatar 4", src: "avatars/avatar4.png" },
-    { name: "Avatar 5", src: "avatars/avatar5.png" },
+    { name: "Avatar 5", src: "avatars/avatar5.png" }
   ];
 
   async function handleSave() {
-    console.log('Selected Avatar:', selectedAvatar);
+    console.log("Selected Avatar:", selectedAvatar);
     error = false;
     success = false;
 
@@ -59,24 +54,29 @@
 
     if (success) invalidate(USER_URL);
   }
+  let deleteSuccess = false;
+  let deleteError = false;
+
   async function handleDeleteUser(e) {
     const response = await fetch(`${PUBLIC_API_BASE_URL}/users/${user.id}`, {
       method: "DELETE"
     });
 
     if (response.status === 204) {
-      // Invalidating this URL will cause our +page.js load() function to rerun, because that load() function
-      // depends on this URL.
+      deleteSuccess = true;
+      deleteError = false;
 
-      alert(`Deleted!`);
-      const deleteToken = await fetch(AUTH_URL, {
-        method: "DELETE",
-        credentials: "include"
-      });
-      await invalidateAll();
-      goto("/");
+      setTimeout(async () => {
+        await fetch(AUTH_URL, {
+          method: "DELETE",
+          credentials: "include"
+        });
+        await invalidateAll();
+        goto("/");
+      }, 2000);
     } else {
-      alert(`Unexpected status code received: ${response.status}`);
+      deleteError = true;
+      deleteSuccess = false;
     }
   }
 
@@ -85,59 +85,119 @@
   }
 </script>
 
-<form on:submit|preventDefault={handleSave}>
-  <p>
-    Your Avatar: <button type="button" on:click={() => toggleAvatarSelection()}
-      ><img src={`${PUBLIC_IMAGES_URL}/${selectedAvatar}`} alt="Selected Avatar" /></button
-    >
-  </p>
-  {#if showAvatarSelector}
-    <label for="avatar">Choose an avatar:</label>
-    <div class="avatar-selection">
-      {#each avatarOptions as avatar}
-        <button type="button"
-          class="avatar-option"
-          class:avatar-selected={selectedAvatar === avatar.src}
-          on:click={() => (selectedAvatar = avatar.src)}
-        >
-          <img src={`${PUBLIC_IMAGES_URL}/${avatar.src}`} alt={avatar.name} />
+<div class="user-profile">
+  {#if !editing}
+    <div class="profile-display">
+      <div class="avatar-container">
+        <p>Your Avatar:</p>
+        <button type="button" on:click={() => toggleAvatarSelection()}>
+          <img src={`${PUBLIC_IMAGES_URL}/${selectedAvatar}`} alt="Selected Avatar" />
         </button>
-      {/each}
+      </div>
+      <div class="user-info">
+        <p>Username: <strong>{username}</strong></p>
+        <p>First name: <strong>{firstName}</strong></p>
+        <p>Last name: <strong>{lastName}</strong></p>
+        <p>Email: <strong>{email}</strong></p>
+        <p>Date of Birth: <strong>{dob}</strong></p>
+        <p>Blurb: <strong>{blurb}</strong></p>
+        <hr class="dashed-line" />
+      </div>
+      <div class="button-container">
+        <button on:click={() => (editing = true)}>Edit</button>
+        <button on:click|preventDefault={handleDeleteUser}>Delete Account</button>
+      </div>
     </div>
-    
+  {:else}
+    <form on:submit|preventDefault={handleSave} class="edit-form">
+      <div class="avatar-container">
+        <p>Your Avatar:</p>
+        <button type="button" on:click={() => toggleAvatarSelection()}>
+          <img src={`${PUBLIC_IMAGES_URL}/${selectedAvatar}`} alt="Selected Avatar" />
+        </button>
+      </div>
+      {#if showAvatarSelector}
+        <label for="avatar">Choose an avatar:</label>
+        <div class="avatar-selection">
+          {#each avatarOptions as avatar}
+            <button
+              type="button"
+              class="avatar-option"
+              class:avatar-selected={selectedAvatar === avatar.src}
+              on:click={() => (selectedAvatar = avatar.src)}
+            >
+              <img src={`${PUBLIC_IMAGES_URL}/${avatar.src}`} alt={avatar.name} />
+            </button>
+          {/each}
+        </div>
+      {/if}
+      <label for="username">Username:</label>
+      <input type="text" name="username" bind:value={username} required disabled />
+
+      <label for="firstName">First name:</label>
+      <input type="text" name="firstName" bind:value={firstName} required />
+
+      <label for="lastName">Last name:</label>
+      <input type="text" name="lastName" bind:value={lastName} required />
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" bind:value={email} required />
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" name="dob" bind:value={dob} required />
+
+      <label for="blurb">Blurb:</label>
+      <textarea name="blurb" bind:value={blurb} rows="12" required></textarea>
+
+      <button type="submit">Save</button>
+
+      {#if error}<span class="error">Could not save!</span>{/if}
+      {#if success}<span class="success">Saved!</span>{/if}
+    </form>
   {/if}
-  <label for="username">Username:</label>
-  <input type="text" name="username" bind:value={username} required />
-  <label for="firstName">First name:</label>
-  <input type="text" name="firstName" bind:value={firstName} required />
 
-  <label for="lastName">Last name:</label>
-  <input type="text" name="lastName" bind:value={lastName} required />
-
-  <label for="email">Email:</label>
-  <input type="email" name="email" bind:value={email} required />
-
-  <label for="dob">Date of Birth:</label>
-  <input type="date" name="dob" bind:value={dob} required />
-
-  <label for="blurb">Blurb:</label>
-  <textarea name="blurb" bind:value={blurb} rows="12" required></textarea>
-  <button type="submit">Save</button>
-
-  {#if error}<span class="error">Could not save!</span>{/if}
-  {#if success}<span class="success">Saved!</span>{/if}
-</form>
-<button on:click|preventDefault={handleDeleteUser}>Delete Account</button>
+  {#if deleteSuccess}<span class="success">Account deleted! Redirecting...</span>{/if}
+  {#if deleteError}<span class="error">Could not delete account!</span>{/if}
+</div>
 
 <style>
-  form {
+  .user-profile {
     max-width: 500px;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
     background-color: #f9f9f9;
+    border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .profile-display,
+  .edit-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .avatar-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .avatar-container button {
+    margin-left: 10px;
+  }
+
+  .user-info {
+    margin-bottom: 15px;
+  }
+
+  .dashed-line {
+    border-top: 1px dashed #ccc;
+    margin: 10px 0;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-between;
   }
 
   label {
@@ -183,6 +243,7 @@
     height: 50px;
     border-radius: 50%;
   }
+
   .error {
     color: red;
     margin-top: 10px;
@@ -193,35 +254,34 @@
     margin-top: 10px;
   }
 
-  button {
-    background-color: #dc3545;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: #c82333;
-  }
   .avatar-option {
     border: 2px solid transparent;
     padding: 5px;
     cursor: pointer;
-    background: none; /* Remove default button background */
-    border: none; /* Remove default button border */
+    background: none;
+    border: none;
   }
+
   .avatar-selected {
-    border: 2px solid green; /* Highlight selected avatar with a green border */
+    border: 2px solid green;
   }
-  .avatar-option {
-    width: fit-content;
-  }
+
   .avatar-selection {
     display: flex;
     flex-direction: row;
     gap: 10px;
   }
- 
+  .success {
+    color: green;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+
+  .error {
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+  }
 </style>

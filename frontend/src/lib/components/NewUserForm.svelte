@@ -56,10 +56,10 @@
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>
-  <label for="avatar">Choose an Avatar:</label>
+  <label for="avatar">Choose an Avatar<span style="color: red">*</span>:</label>
   <div class="avatar-selection">
     {#each avatarOptions as avatar}
-      <button
+      <button type="button"
         class="avatar-option"
         class:avatar-selected={selectedAvatar === avatar.src}
         on:click={() => (selectedAvatar = avatar.src)}
@@ -77,105 +77,160 @@
       />
     </p>
   {/if}
-  <label for="username">username:</label>
-  <input type="text" bind:value={username} name="username" on:blur={checkUsername} required />
+  <label for="username">username<span style="color: red">*</span>:</label>
+  <input type="text" bind:value={username} name="username" on:blur={checkUsername} placeholder="Enter your username"required />
   {#if usernameAvailable === true}
     <span style="color: green;">Username is available!</span>
   {/if}
   {#if usernameAvailable === false}
     <span style="color: red;">Username is already taken.</span><br />
   {/if}
-  <label for="firstName">First name:</label>
-  <input type="text" bind:value={firstName} name="firstName" required />
-  <label for="lastName">Last name:</label>
-  <input type="text" bind:value={lastName} name="lastName" required />
-  <label for="password">password:</label>
-  <input type="password" bind:value={password} name="password" required />
-  <label for="confirmPassword">Re-enter password:</label>
+  <label for="firstName">First name<span style="color: red">*</span>:</label>
+  <input type="text" bind:value={firstName} name="firstName" placeholder="Enter your first name" required />
+  <label for="lastName">Last name<span style="color: red">*</span>:</label>
+  <input type="text" bind:value={lastName} name="lastName" placeholder="Enter your last name" required />
+  <label for="password">password<span style="color: red">*</span>:</label>
+  <input type="password" bind:value={password} name="password" placeholder="Password must be at least 6 characters long" required />
+  <label for="confirmPassword">Re-enter password<span style="color: red">*</span>:</label>
   <input
     type="password"
     bind:value={confirmPassword}
-    name="confirmPassword"
+    name="confirmPassword" placeholder="Re-enter your password"
     required
     on:blur={checkPasswords}
   />
   {#if !passwordsMatch && confirmPassword.length > 0}
     <p style="color: red;">Passwords do not match.</p>
   {/if}
-  <label for="email">Email:</label>
-  <input type="email" bind:value={email} name="email" required />
-  <label for="dob">Date of Birth:</label>
+  <label for="email">Email<span style="color: red">*</span>:</label>
+  <input type="email" bind:value={email} name="email" placeholder="Enter your email" required />
+  <label for="dob">Date of Birth<span style="color: red">*</span>:</label>
   <input type="date" bind:value={dob} name="dob" required />
   <label for="blurb">Blurb:</label>
-  <textarea bind:value={blurb} rows="12" required />
+  <textarea bind:value={blurb} rows="12" placeholder="Tell us a bit about yourself" />
   <button type="submit" disabled={!usernameAvailable || !passwordsMatch}>Submit</button>
 </form>
 
 <style>
-  form {
-    max-width: 400px; /* Set form width */
+ form {
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
 
   label {
     display: block;
     font-weight: bold;
-    margin-bottom: 5px;
-  }
-  input,
-  textarea {
-    width: 100%; /* Full width for inputs */
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    margin-top: 5px;
+    margin-bottom: 8px;
+    color: #333;
   }
 
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="date"],
   textarea {
-    resize: none;
-  }
-
-  button {
     width: 100%;
-    background-color: #ad9fdd;
-    color: white;
     padding: 10px;
-    border: none;
-    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="email"]:focus,
+  input[type="date"]:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  .avatar-selection {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .avatar-option {
+    border: 2px solid transparent;
+    padding: 5px;
+    border-radius: 50%;
+    margin-right: 10px;
     cursor: pointer;
+    background-color: transparent;
   }
 
-  button:hover {
-    background-color: #45a049;
-  }
-
-  img {
+  .avatar-option img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
   }
-  .avatar-option {
-    border: 2px solid transparent;
-    padding: 5px;
-    cursor: pointer;
-    background: none; /* Remove default button background */
-    border: none; /* Remove default button border */
-  }
+
   .avatar-selected {
-    border: 2px solid green; /* Highlight selected avatar with a green border */
+    border-color: #007bff;
   }
-  .avatar-option {
-    width: fit-content;
+
+  .avatar-selected-display {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: 10px;
+    vertical-align: middle;
   }
-  .avatar-selection {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+
+  button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:disabled {
+    background-color: #ccc;
+  }
+
+  span {
+    font-size: 14px;
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  
+  span,p {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  
+  @media (max-width: 768px) {
+    form {
+      padding: 15px;
+    }
+
+    .avatar-option img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .avatar-selected-display {
+      width: 40px;
+      height: 40px;
+    }
   }
 </style>

@@ -12,13 +12,25 @@
   /**
    * Handle logout by sending a DELETE request to /api/auth, then invalidating.
    */
-  async function handleLogout() {
+   async function handleLogout() {
+  try {
+
     const response = await fetch(AUTH_URL, {
       method: "DELETE",
       credentials: "include"
     });
-    await invalidateAll();
+
+    if (response.ok) {
+      await invalidateAll(); 
+    } else {
+      console.error("Logout failed with status:", response.status);
+    }
+  } catch (error) {
+    console.error("Error during logout:", error);
+  } finally {
+    window.location.href = "/login";
   }
+}
 </script>
 
 <nav>
