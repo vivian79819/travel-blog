@@ -12,25 +12,24 @@
   /**
    * Handle logout by sending a DELETE request to /api/auth, then invalidating.
    */
-   async function handleLogout() {
-  try {
+  async function handleLogout() {
+    try {
+      const response = await fetch(AUTH_URL, {
+        method: "DELETE",
+        credentials: "include"
+      });
 
-    const response = await fetch(AUTH_URL, {
-      method: "DELETE",
-      credentials: "include"
-    });
-
-    if (response.ok) {
-      await invalidateAll(); 
-    } else {
-      console.error("Logout failed with status:", response.status);
+      if (response.ok) {
+        await invalidateAll();
+      } else {
+        console.error("Logout failed with status:", response.status);
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+    } finally {
+      window.location.href = "/login";
     }
-  } catch (error) {
-    console.error("Error during logout:", error);
-  } finally {
-    window.location.href = "/login";
   }
-}
 </script>
 
 <nav>
@@ -39,10 +38,9 @@
   </ul>
   <span />
   <ul>
-    <!-- Display the login link OR the logout button, not both. -->
     {#if data.isLoggedIn}
-    <li><a href="/mypage" class:active={path.startsWith("/mypage")}>My Articles</a></li>
-    <li><a href="/about" class:active={path.startsWith("/about")}>My Profile</a></li>
+      <li><a href="/mypage" class:active={path.startsWith("/mypage")}>My Articles</a></li>
+      <li><a href="/about" class:active={path.startsWith("/about")}>My Profile</a></li>
       <li><button on:click={handleLogout}>Logout</button></li>
     {:else}
       <li><a href="/login" class:active={path.startsWith("/login")}>Login</a></li>

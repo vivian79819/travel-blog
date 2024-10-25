@@ -136,9 +136,7 @@
     background-color: #0056b3;
   }
 
-  .articles {
-    margin: 30px 0;
-  }
+
 
   .featured {
     margin-bottom: 40px;

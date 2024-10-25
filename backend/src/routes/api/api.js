@@ -11,5 +11,7 @@ import userRoutes from "./api-users.js";
 router.use("/users", userRoutes);
 import articleRoutes from './api-articles.js';
 router.use("/articles", articleRoutes)
+import avatarRoutes from "./api-avatars.js";
+router.use("/avatars", avatarRoutes);
 
 export default router;

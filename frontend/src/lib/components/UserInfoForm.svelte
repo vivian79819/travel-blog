@@ -21,13 +21,22 @@
   let showAvatarSelector = false;
   let editing = false;
 
-  let avatarOptions = [
-    { name: "Avatar 1", src: "avatars/avatar1.png" },
-    { name: "Avatar 2", src: "avatars/avatar2.png" },
-    { name: "Avatar 3", src: "avatars/avatar3.png" },
-    { name: "Avatar 4", src: "avatars/avatar4.png" },
-    { name: "Avatar 5", src: "avatars/avatar5.png" }
-  ];
+  let confirmingDelete = false;
+
+  let avatarOptions = [];
+
+  // Fetch avatars from backend
+  const fetchAvatars = async () => {
+    try {
+      const response = await fetch(`${PUBLIC_API_BASE_URL}/avatars`);
+      avatarOptions = await response.json();
+    } catch (error) {
+      console.error("Failed to fetch avatars:", error);
+    }
+  };
+
+  // Fetch avatars when the component is mounted
+  fetchAvatars();
 
   async function handleSave() {
     console.log("Selected Avatar:", selectedAvatar);
@@ -52,8 +61,15 @@
     success = response.status === 204;
     error = !success;
 
-    if (success) invalidate(USER_URL);
+    if (success) {
+      invalidate(USER_URL);
+      setTimeout(() => {
+        editing = false;
+        success = false;
+      }, 1000);
+    }
   }
+
   let deleteSuccess = false;
   let deleteError = false;
 
@@ -83,13 +99,20 @@
   function toggleAvatarSelection() {
     showAvatarSelector = !showAvatarSelector;
   }
+  function handleDeleteClick() {
+    confirmingDelete = true;
+  }
+
+  function cancelDelete() {
+    confirmingDelete = false;
+  }
 </script>
 
 <div class="user-profile">
   {#if !editing}
     <div class="profile-display">
       <div class="avatar-container">
-        <p>Your Avatar:</p>
+        <p>Avatar:</p>
         <button type="button" on:click={() => toggleAvatarSelection()}>
           <img src={`${PUBLIC_IMAGES_URL}/${selectedAvatar}`} alt="Selected Avatar" />
         </button>
@@ -104,10 +127,19 @@
         <hr class="dashed-line" />
       </div>
       <div class="button-container">
-        <button on:click={() => (editing = true)}>Edit</button>
-        <button on:click|preventDefault={handleDeleteUser}>Delete Account</button>
+        <button on:click={() => (editing = true)} class="btn-edit">Edit</button>
+        <button on:click|preventDefault={handleDeleteClick} class="btn-delete"
+          >Delete Account</button
+        >
       </div>
     </div>
+    {#if confirmingDelete}
+      <div class="confirm-delete">
+        <p>Are you sure you want to delete your account?</p>
+        <button on:click={handleDeleteUser} class="btn-confirm">Confirm</button>
+        <button on:click={cancelDelete} class="btn-cancel">Cancel</button>
+      </div>
+    {/if}
   {:else}
     <form on:submit|preventDefault={handleSave} class="edit-form">
       <div class="avatar-container">
@@ -124,7 +156,10 @@
               type="button"
               class="avatar-option"
               class:avatar-selected={selectedAvatar === avatar.src}
-              on:click={() => (selectedAvatar = avatar.src)}
+              on:click={() => {
+                selectedAvatar = avatar.src;
+                showAvatarSelector = false;
+              }}
             >
               <img src={`${PUBLIC_IMAGES_URL}/${avatar.src}`} alt={avatar.name} />
             </button>
@@ -149,7 +184,7 @@
       <label for="blurb">Blurb:</label>
       <textarea name="blurb" bind:value={blurb} rows="12" required></textarea>
 
-      <button type="submit">Save</button>
+      <button type="submit" class="btn-save">Save</button>
 
       {#if error}<span class="error">Could not save!</span>{/if}
       {#if success}<span class="success">Saved!</span>{/if}
@@ -216,6 +251,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    margin-left: 10px;
   }
 
   input:focus,
@@ -224,8 +260,10 @@
     outline: none;
   }
 
-  button[type="submit"] {
-    background-color: #28a745;
+  button[type="submit"],
+  .btn-edit,
+  .btn-delete {
+    background-color: rgb(178, 168, 234);
     color: white;
     padding: 10px 15px;
     border: none;
@@ -234,8 +272,10 @@
     font-size: 16px;
   }
 
-  button[type="submit"]:hover {
-    background-color: #218838;
+  button[type="submit"]:hover,
+  .btn-edit:hover,
+  .btn-delete:hover {
+    background-color: #0056b3;
   }
 
   img {
@@ -247,30 +287,10 @@
   .error {
     color: red;
     margin-top: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
   }
 
-  .success {
-    color: green;
-    margin-top: 10px;
-  }
-
-  .avatar-option {
-    border: 2px solid transparent;
-    padding: 5px;
-    cursor: pointer;
-    background: none;
-    border: none;
-  }
-
-  .avatar-selected {
-    border: 2px solid green;
-  }
-
-  .avatar-selection {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-  }
   .success {
     color: green;
     margin-top: 10px;
@@ -278,10 +298,7 @@
     font-size: 1.2em;
   }
 
-  .error {
-    color: red;
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 1.2em;
+  .edit-form {
+    padding: 20px;
   }
 </style>
