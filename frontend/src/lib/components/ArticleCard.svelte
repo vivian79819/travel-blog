@@ -10,7 +10,8 @@
       <h2>{article.title}</h2>
       <p class="desc">{article.description}</p>
       {#if featured}
-        <p class="content">{article.content.substring(0, 120)}...</p>
+        <!--Updated to accommdate Quill editor, to render correct content with HTML-->
+        <p class="content">{@html article.content.substring(0, 120)+ "..."}</p> 
       {/if}
       <div class="user">
         <img class="avatar" src={`${PUBLIC_IMAGES_URL}/${article.userAvatar}`} alt={article.username} />

@@ -23,6 +23,7 @@
   },
   "type": "module",
   "dependencies": {
-    "dayjs": "^1.11.11"
+    "dayjs": "^1.11.11",
+    "quill": "^2.0.2"
   }
 }
