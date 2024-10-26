@@ -32,19 +32,29 @@
   }
 </script>
 
+<!-- Navigation bar will have Home, Login and Register button when no user is logged in; 
+ When a user is logged in, apart from Home, there will be My Articles, Write Articles, My Profile and Logout buttons present -->
 <nav>
   <ul>
-    <li><a href="/" class:active={path === "/"}>Home</a></li>
+    <!-- Link home page where a mix of articles are on display -->
+    <li><a href="/" class:active={path === "/"}><img src="/navbar/home.png" alt="home-icon">Home</a></li>
   </ul>
   <span />
   <ul>
     {#if data.isLoggedIn}
-      <li><a href="/mypage" class:active={path.startsWith("/mypage")}>My Articles</a></li>
-      <li><a href="/about" class:active={path.startsWith("/about")}>My Profile</a></li>
-      <li><button on:click={handleLogout}>Logout</button></li>
+      <!-- Link to view user's articles -->
+      <li><a href="/mypage" class:active={path.startsWith("/mypage")}><img src="/navbar/articles.png" alt="articles-icon">My Articles</a></li>
+      <!-- Link to create a new article -->
+      <li><a href="/create" class:active={path.startsWith("/create")}><img src="/navbar/write.png" alt="write-icon">Write Articles</a></li>
+      <!-- Link to view or update details or delete user's account -->
+      <li><a href="/about" class:active={path.startsWith("/about")}><img src="/navbar/user.png" alt="user-icon">My Profile</a></li>
+      <!-- Link to log out -->
+      <li><button on:click={handleLogout}><img src="/navbar/logout.png" alt="logout-icon">Logout</button></li>
     {:else}
-      <li><a href="/login" class:active={path.startsWith("/login")}>Login</a></li>
-      <li><a href="/register" class:active={path.startsWith("/register")}>Sign Up</a></li>
+      <!-- Link to log in user's account -->
+      <li><a href="/login" class:active={path.startsWith("/login")}><img src="/navbar/login.png" alt="login-icon">Login</a></li>
+      <!-- Link to create new user's account -->
+      <li><a href="/register" class:active={path.startsWith("/register")}><img src="/navbar/signup.png" alt="signup-icon">Sign Up</a></li>
     {/if}
   </ul>
 </nav>
@@ -105,5 +115,12 @@
     @media (max-width: 1200px) {
       width: 100%;
     }
+  }
+
+  img {
+      width: 30px;
+      height: 30px;
+      margin-right: 5px;
+      margin-bottom: -5px;
   }
 </style>
