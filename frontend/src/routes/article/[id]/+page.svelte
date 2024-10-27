@@ -19,7 +19,12 @@
       </p>
       <p class="desc">{article.description}</p>
       <!--Updated to accommdate Quill editor, to render correct content with HTML-->
-      <div class="content" innerHTML={article.content}></div> 
+      <div class=“content”>{@html article.content}</div>
+
+
+
+
+
     </article>
   {:else}
     <h1>Article Not Found</h1>
