@@ -1,5 +1,5 @@
 import { getDatabase } from "./database.js";
-
+import yup from "yup";
 export async function getArticles() {
   const db = await getDatabase();
   const articles = await db.all(`
@@ -12,15 +12,38 @@ export async function getArticles() {
   return articles;
 }
 
-export async function addArticles(article) {
+export const createArticleSchema = yup.object({
+  title: yup.string().required("Title is required"),
+  description: yup.string().required("Description is required"),
+  content: yup.string().required("Content is required"),
+  image: yup.string().nullable(), 
+  userId: yup.number().required("User ID is required")
+});
+
+export async function createArticle(articleData) {
+
+  const newArticle = createArticleSchema.validateSync(articleData, {
+    abortEarly: false,
+    stripUnknown: true
+  });
   const db = await getDatabase();
-  const response = await db.run(
-    "INSERT INTO Articles (title, description, content, image, userId, date) VALUES (?, ?, ?, ?, ?, ?)",
-    [article.title, article.description, article.content, article.image, article.userId, article.date]
+  const date = new Date().toISOString().split('T')[0];
+
+  const dbResult = await db.run(
+    `INSERT INTO Articles (title, description, content, image, userId, date)
+     VALUES (?, ?, ?, ?, ?, ?)`,
+    newArticle.title,
+    newArticle.description,
+    newArticle.content,
+    newArticle.image,
+    newArticle.userId,
+    date
   );
 
-  return getArticleById(response.lastID);
-}
+  newArticle.id = dbResult.lastID;
+  return newArticle;
+};
+
 
 export async function getArticleById(id) {
   const db = await getDatabase();

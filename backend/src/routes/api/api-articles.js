@@ -1,5 +1,5 @@
 import express from "express";
-import { getArticles, addArticles, getArticleById, deleteArticleById } from "../../data/articles-dao.js";
+import { getArticles, getArticleById, deleteArticleById,createArticle } from "../../data/articles-dao.js";
 import { requiresAuthentication } from "../../middleware/auth-middleware.js";
 import multer from 'multer';
 import path from 'path';
@@ -28,21 +28,34 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", requiresAuthentication, upload.single('image'), async (req, res) => {
-  const { title, description, content } = req.body;
-  const image = req.file.filename;
-  
-  const article = {
-    title,
-    description,
-    content,
-    image,
-    userId: req.user.id,
-    date: new Date().toISOString().split('T')[0]
-  };
+  const { title, description, content } = req.body; 
+  const image = req.file ? req.file.filename : null; 
+  if (!req.file) {
+    return res.status(400).json({ error: 'File not uploaded' });
+  }
 
-  const dbMessage = await addArticles(article);
-  return res.status(201).location(`/api/articles/${dbMessage.id}`).json(dbMessage);
+  try {
+
+    if (!title || !description || !content) {
+      return res.status(400).json({ error: "Missing required fields." });
+    }
+ const userId=req.user.id;
+    const articleData = {
+      title,
+      description,
+      content,
+      image,
+      userId 
+    };
+
+    const newArticle = await createArticle(articleData);
+    return res.status(201).location(`/api/articles/${newArticle.id}`).json(newArticle);
+  } catch (error) {
+    console.error("Error creating article:", error); 
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
 });
+
 
 router.get("/:id", async (req, res) => {
   const articleId = req.params.id;
