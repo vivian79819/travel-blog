@@ -1,7 +1,15 @@
 <script>
     import { PUBLIC_IMAGES_URL } from "$env/static/public";
+    import DOMPurify from 'dompurify';
+    import truncate from 'html-truncate';
+
     export let article;
     export let featured = false;
+
+    // Sanitize and truncate the content
+    const maxLength = 120; // Adjust this length as needed
+    $: sanitizedContent = DOMPurify.sanitize(article.content || "");
+    $: truncatedContent = truncate(sanitizedContent, maxLength);
   </script>
   
   <a href={`/article/${article.id}`} class="article-card {featured ? 'featured' : ''}">
@@ -9,8 +17,9 @@
     <div class="info">
       <h2>{article.title}</h2>
       <p class="desc">{article.description}</p>
-      {#if featured}
-        <p class="content">{article.content.substring(0, 120)}...</p>
+      {#if featured && article.content}
+      <!-- Render truncated and sanitized HTML content safely -->
+      <p class="content">{@html truncatedContent}</p>
       {/if}
       <div class="user">
         <img class="avatar" src={`${PUBLIC_IMAGES_URL}/${article.userAvatar}`} alt={article.username} />

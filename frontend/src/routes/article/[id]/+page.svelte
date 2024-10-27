@@ -18,9 +18,8 @@
         By <span class="author">{article.username}</span> on <time>{article.date}</time>
       </p>
       <p class="desc">{article.description}</p>
-      <div class="content">
-        {article.content}
-      </div>
+      <!--Updated to accommdate Quill editor, to render correct content with HTML-->
+      <div class="content" innerHTML={article.content}></div> 
     </article>
   {:else}
     <h1>Article Not Found</h1>

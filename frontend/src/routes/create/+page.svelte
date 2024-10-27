@@ -1,17 +1,19 @@
 <script>
     import { PUBLIC_API_BASE_URL } from "$env/static/public";
     import { goto } from "$app/navigation";
+    import QuillEditor from "../../lib/components/QuillEditor.svelte";
   
     let title = "";
     let description = "";
-    let content = "";
+    let content = ""; // This will store content from QuillEditor
     let image;
+    
   
     async function handleSubmit() {
       const formData = new FormData();
       formData.append("title", title);
       formData.append("description", description);
-      formData.append("content", content);
+      formData.append("content", quill.root.innerHTML); // Get the HTML content from Quill
       formData.append("image", image[0]);
   
       try {
@@ -45,7 +47,7 @@
       </div>
       <div>
         <label for="content">Content:</label>
-        <textarea id="content" bind:value={content} required></textarea>
+        <QuillEditor bind:content={content} />  
       </div>
       <div>
         <label for="image">Image:</label>
