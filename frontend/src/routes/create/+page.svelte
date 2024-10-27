@@ -1,37 +1,13 @@
 <script>
     import { PUBLIC_API_BASE_URL } from "$env/static/public";
     import { goto } from "$app/navigation";
-    import Quill from 'quill';
-    import 'quill/dist/quill.snow.css';
-    import { onMount } from "svelte";
+    import QuillEditor from "../../lib/components/QuillEditor.svelte";
   
     let title = "";
     let description = "";
-    let content = "";
+    let content = ""; // This will store content from QuillEditor
     let image;
-    let quill;
-
-    // Initialize and customize Quill editor after the component mounts
-    onMount(()=> {
-      quill = new Quill ('#editor', {
-        theme: 'snow',
-        modules: {
-          toolbar: [
-          [{ 'header': [1, 2, 3, 4, 5, 6, false] }], // Size of text
-          ['bold', 'italic', 'underline'], // Formatting options
-          [{ 'color': [] }, { 'background': [] }], // Coloring options
-          ['link', 'image'], // Link and Image options
-          [{ list: 'bullet' }, { 'list': 'ordered'}, { 'list': 'check' }], // List style points
-          ['clean'] // Clear formatting button
-          ]
-      },
-        placeholder: 'Compose your content here...'
-      });
-       // Update content when editor changes
-      quill.on('text-change', () => {
-        content = quill.root.innerHTML; // Get HTML content from the editor
-      });
-    });
+    
   
     async function handleSubmit() {
       const formData = new FormData();
@@ -70,10 +46,8 @@
         <textarea id="description" bind:value={description} required></textarea>
       </div>
       <div>
-        <!-- Updated to match Quill editor -->
-        <label for="editor">Content:</label> 
-        <!-- Quill editor --> 
-        <div id="editor" style="height: 200px;"></div>  
+        <label for="content">Content:</label>
+        <QuillEditor bind:content={content} />  
       </div>
       <div>
         <label for="image">Image:</label>
