@@ -96,6 +96,7 @@
       border: 0;
       padding: 0;
       font-family: inherit;
+      font-family: "Dancing Script", cursive;
       cursor: pointer;
 
       &.active {

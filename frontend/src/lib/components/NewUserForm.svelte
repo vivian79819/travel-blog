@@ -84,7 +84,7 @@
       />
     </p>
   {/if}
-  <label for="username">username<span style="color: red">*</span>:</label>
+  <label for="username">Username<span style="color: red">*</span>:</label>
   <input type="text" bind:value={username} name="username" on:blur={checkUsername} placeholder="Enter your username"required />
   {#if usernameAvailable === true}
     <span style="color: green;">Username is available!</span>
@@ -92,13 +92,13 @@
   {#if usernameAvailable === false}
     <span style="color: red;">Username is already taken.</span><br />
   {/if}
-  <label for="firstName">First name<span style="color: red">*</span>:</label>
+  <label for="firstName">First Name<span style="color: red">*</span>:</label>
   <input type="text" bind:value={firstName} name="firstName" placeholder="Enter your first name" required />
-  <label for="lastName">Last name<span style="color: red">*</span>:</label>
+  <label for="lastName">Last Name<span style="color: red">*</span>:</label>
   <input type="text" bind:value={lastName} name="lastName" placeholder="Enter your last name" required />
-  <label for="password">password<span style="color: red">*</span>:</label>
+  <label for="password">Password<span style="color: red">*</span>:</label>
   <input type="password" bind:value={password} name="password" placeholder="Password must be at least 6 characters long" required />
-  <label for="confirmPassword">Re-enter password<span style="color: red">*</span>:</label>
+  <label for="confirmPassword">Re-enter Password<span style="color: red">*</span>:</label>
   <input
     type="password"
     bind:value={confirmPassword}
@@ -120,124 +120,89 @@
 
 <style>
  form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: none;
+  box-sizing: border-box;
+}
 
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #333;
-  }
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: black;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
 
-  input[type="text"],
-  input[type="password"],
-  input[type="email"],
-  input[type="date"],
-  textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    box-sizing: border-box;
-  }
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background-color: white;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+}
 
-  input[type="text"]:focus,
-  input[type="password"]:focus,
-  input[type="email"]:focus,
-  input[type="date"]:focus,
-  textarea:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
+input::placeholder {
+  color: #94a3b8;
+}
 
-  .avatar-selection {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
+.avatar-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
 
-  .avatar-option {
-    border: 2px solid transparent;
-    padding: 5px;
-    border-radius: 50%;
-    margin-right: 10px;
-    cursor: pointer;
-    background-color: transparent;
-  }
+.avatar-option {
+  border: 2px solid transparent;
+  padding: 2px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: transparent;
+}
 
-  .avatar-option img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-  }
+.avatar-option img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
 
-  .avatar-selected {
-    border-color: #007bff;
-  }
+.avatar-selected {
+  border-color: var(--orange);
+}
 
-  .avatar-selected-display {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-left: 10px;
-    vertical-align: middle;
-  }
+button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--orange);;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  margin-top: 0.5rem;
+}
 
-  button[type="submit"] {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+button[type="submit"]:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+}
 
-  button[type="submit"]:disabled {
-    background-color: #ccc;
-  }
-
-  span {
-    font-size: 14px;
-  }
-
-  p {
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-
-  
-  span,p {
-    font-size: 14px;
-    margin: 0;
-  }
-
-  
-  @media (max-width: 768px) {
-    form {
-      padding: 15px;
-    }
-
-    .avatar-option img {
-      width: 40px;
-      height: 40px;
-    }
-
-    .avatar-selected-display {
-      width: 40px;
-      height: 40px;
-    }
-  }
+span[style*="color: red"] {
+  color: #ef4444;
+  margin-left: 0.25rem;
+}
 </style>

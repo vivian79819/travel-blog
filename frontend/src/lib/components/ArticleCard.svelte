@@ -45,8 +45,7 @@
       background-color: white;
       text-decoration: none;
     color: inherit;
-    background-color: var(--beige);
-    border: 1px solid var(--neutral);
+    background-color: white;
 
     }
   
