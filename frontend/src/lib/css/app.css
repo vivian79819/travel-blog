@@ -5,13 +5,14 @@
   --dark-brown: #73563d;
   --neutral: #d9c7b8;
   --earth: #a66641;
-  --beige: beige;
+  --beige:#f1eae3;
 }
 
 
 
 body {
-  background-color: var(--neutral);
+  
+  background-color: var(--beige);
     font-family:"Open Sans", sans-serif;
 }
 

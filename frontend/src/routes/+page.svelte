@@ -76,18 +76,20 @@
   .welcome {
     margin-bottom: 40px;
     padding: 20px;
-    background-color: var(--neutral);
+   
+    background-color: var(--beige);
     border-radius: 8px;
   }
 
   h1 {
     margin: 0 0 20px 0;
-    color: #333;
+    color: black;
   }
 
   h2 {
     margin: 20px 0;
-    color: #444;
+    color: black;
+    font-size: 40px;
   }
 
   .info {
@@ -140,7 +142,8 @@
 
   .featured {
     margin-bottom: 40px;
-    background-color: beige;
+    
+    background-color: var(--neutral);
   }
 
   .article-grid {
@@ -152,5 +155,6 @@
 
   .all-articles {
     margin-top: 40px;
+   
   }
 </style>

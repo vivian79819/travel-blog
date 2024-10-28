@@ -45,7 +45,8 @@
       background-color: white;
       text-decoration: none;
     color: inherit;
-    background-color: var(--grey-light);
+    background-color: var(--beige);
+    border: 1px solid var(--neutral);
 
     }
   
@@ -68,19 +69,20 @@
       font-size: 1.2rem;
       line-height: 1.3;
       font-weight: 600;
+      
     }
   
     .desc {
       margin: 0 0 12px 0;
       font-size: 0.9rem;
-      color: #555;
+      color: black;
       line-height: 1.4;
     }
   
     .content {
       margin: 0 0 12px 0;
       font-size: 0.9rem;
-      color: #333;
+      color: black;
       line-height: 1.4;
     }
   
@@ -105,12 +107,12 @@
       font-size: 0.8rem;
       font-weight: 500;
       margin-right: 8px;
-      color: var(--purple-dark)
+      color: var(--dark-brown)
     }
   
     .date {
       font-size: 0.8rem;
-      color: #777;
+      color: black;
     }
   
     .featured {
