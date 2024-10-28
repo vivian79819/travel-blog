@@ -1,25 +1,27 @@
 /* System Fonts as used by GitHub */
 :root {
-  --purple-dark: rgba(27, 16, 38, 1);
-  --grey-light: rgba(242, 242, 242, 1);
-  --olive-dark: rgba(84, 89, 49, 1);
-  --orange-light: rgba(216, 139, 95, 1);
-  --brown-light: rgba(140, 110, 99, 1);
+  --blue: #bbe2f2;
+  --orange: #bf7b3f;
+  --dark-brown: #73563d;
+  --neutral: #d9c7b8;
+  --earth: #a66641;
+  --beige: beige;
 }
 
 
 
 body {
-
+  background-color: var(--neutral);
     font-family:"Open Sans", sans-serif;
 }
 
 h2 {
-  color: var(--purple-dark);
+  color: black;
   font-family: gotham;
   
 }
 
 p {
   font-family:"Open Sans", sans-serif;
+  color: black;
 }

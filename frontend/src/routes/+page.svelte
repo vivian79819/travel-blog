@@ -76,7 +76,7 @@
   .welcome {
     margin-bottom: 40px;
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: var(--neutral);
     border-radius: 8px;
   }
 
@@ -109,12 +109,12 @@
 
   .username {
     font-weight: bold;
-    color: #666;
+    color: black;
     margin: 0;
   }
 
   .blurb {
-    color: #777;
+    color: black;
     margin: 5px 0 0 0;
   }
 
@@ -125,7 +125,7 @@
   .article-btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: var(--orange);
     color: white;
     text-decoration: none;
     border-radius: 4px;
@@ -140,6 +140,7 @@
 
   .featured {
     margin-bottom: 40px;
+    background-color: beige;
   }
 
   .article-grid {
