@@ -5,6 +5,7 @@
   import { PUBLIC_IMAGES_URL } from "$env/static/public";
   import MessageView from "$lib/components/MessageView.svelte";
   import SearchBox from '$lib/components/Search.svelte';
+  import Banner from '../lib/components/Banner.svelte';
   export let data;
   $: articles = data.articles || [];
   $: userArticles = data.isLoggedIn ? articles.filter(article => article.userId === data.user.id) : [];
@@ -18,6 +19,7 @@
 </svelte:head>
 
 <main>
+  <Banner />
   <SearchBox {articles} />
   {#if data.isLoggedIn}
     <div class="welcome">
