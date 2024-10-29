@@ -44,8 +44,10 @@ INSERT INTO Articles (title, description, content, image, userId, date) VALUES
 (
     '10 Days in Bali: A Journey of Discovery',
     'Exploring the hidden gems of Indonesia''s paradise island',
-    'From pristine beaches to lush rice terraces, Bali offers a diverse landscape that captivates every traveler. Our 10-day adventure took us through bustling markets, serene temples, and breathtaking sunsets.',
-    '6.jpg',
+    'Bali, known as the "Island of the Gods", is famous for its stunning landscapes, which include lush rice terraces, volcanic mountains, and beautiful beaches. The island is a cultural hub, rich in traditions and arts, with vibrant markets and exquisite temples that showcase its deep spiritual heritage. Bali attracts travelers from around the world with its warm hospitality, offering a wide range of accommodations from luxury resorts to cozy guesthouses. 
+    
+    Adventure seekers can enjoy activities like surfing, snorkeling, and hiking to the summit of Mount Batur for breathtaking sunrise views. The local cuisine, featuring dishes such as nasi goreng and satay, tantalizes the taste buds and reflects the island''s diverse culinary influences. From pristine beaches to lush rice terraces, Bali offers a diverse landscape that captivates every traveler. Our 10-day adventure took us through bustling markets, serene temples, and breathtaking sunsets.',
+    '8.jpg',
     1,
     '2024-10-01'
 ),
