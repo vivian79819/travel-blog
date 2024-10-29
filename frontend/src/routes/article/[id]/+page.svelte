@@ -1,7 +1,14 @@
 <script>
   import { PUBLIC_IMAGES_URL } from "$env/static/public";
   export let data;
-
+  const id = data.articleId;
+  const isLoggedIn = data.isLoggedIn;
+  const user = data.user;
+ 
+  import { goto } from "$app/navigation";
+  function handleEditArticle() {
+    goto(`/edit/${id}`);
+  }
   $: article = data.article;
 </script>
 
@@ -19,10 +26,14 @@
       </p>
       <p class="desc">{article.description}</p>
       <!--Updated to accommdate Quill editor, to render correct content with HTML-->
-      <div class=“content”>{@html article.content}</div>
+      <div class="content">{@html article.content}</div>
 
 
-
+      {#if isLoggedIn && article.userId === user.id}
+      <button class="edit-button" title="Edit your article" on:click={handleEditArticle}>
+        Edit
+      </button>
+    {/if}
 
 
     </article>

@@ -1,50 +1,42 @@
 <script>
-  export let article;
+
   import { PUBLIC_API_BASE_URL } from "$env/static/public";
-  import QuillEditor from "./QuillEditor.svelte";
+  import EditArticle from "$lib/components/EditArticle.svelte";
+  import { goto, invalidateAll } from "$app/navigation";
 
-  let title = article.title;
-  let description = article.description;
-  let content = article.content;
-  let imageUrl = article.image;
-  let newImageFile = null;
+  export let data;
+  $: article = data.article;
+  async function handleEditArticle(e) {
+    const articleData = e.detail;
+      const response = await fetch(`${PUBLIC_API_BASE_URL}/articles/${article.id}`, {
+        method: "PATCH",
+        body: articleData,
+        credentials: "include"
+      });
 
-  function handleImageChange(e) {
-    newImageFile = e.target.files[0];
+      if (response.ok) {
+  if (response.status !== 204) {
+    const result = await response.json();
+    await invalidateAll();
+    goto(`/article/${result.id}`);
+  } else {
+    await invalidateAll();
+    goto(`/article/${article.id}`);
   }
+} else {
+  const errorText = await response.text();
+  console.error("Failed to edit article:", errorText);
+}
 
-  async function handleSave() {
-    const response = await fetch(`${PUBLIC_API_BASE_URL}/articles/${article.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, description, content })
-    });
-
-    if (response.ok) {
-      console.log("Article updated!");
-    } else {
-      console.error("Failed to update article");
-    }
-  }
+}
 </script>
 
-<form on:submit|preventDefault={handleSave}>
-  <label for="title">Title:</label>
-  <input id="title" bind:value={title} />
+<svelte:head>
+  <title>Edit Article</title>
+</svelte:head>
 
-  <label for="description">Description:</label>
-  <input id="description" bind:value={description} />
+<h1>My article</h1>
 
-  <label for="content">Content:</label>
-  <QuillEditor bind:content />
-
-  <div>
-    <label for="image">Image:</label>
-    <div class="image-preview">
-      <img src={imageUrl} alt="Preview of the current article" class="current-image" />
-    </div>
-    <input type="file" id="image" on:change={handleImageChange} accept="image/*" />
-  </div>
-
-  <button type="submit">Save Changes</button>
-</form>
+{#if article}
+  <EditArticle {article} on:submit={handleEditArticle} />
+{/if}

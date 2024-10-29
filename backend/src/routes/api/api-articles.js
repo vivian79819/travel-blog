@@ -1,5 +1,5 @@
 import express from "express";
-import { getArticles, getArticleById, deleteArticleById,createArticle } from "../../data/articles-dao.js";
+import { getArticles, getArticleById, deleteArticleById,createArticle,updateArticle} from "../../data/articles-dao.js";
 import { requiresAuthentication } from "../../middleware/auth-middleware.js";
 import multer from 'multer';
 import path from 'path';
@@ -79,13 +79,30 @@ router.delete("/:id", requiresAuthentication, async (req, res) => {
 });
 
 
-router.patch("/:id", requiresAuthentication, async (req, res) => {
-  const articleId = req.params.id;
+router.patch("/:id", upload.single('image'), async (req, res) => {
   try {
-    const isUpdated = await updateArticle(articleId, req.body);
+    const { title, description, content } = req.body; 
+
+   
+    const existingArticle = await getArticleById(req.params.id);
+    if (!existingArticle) {
+      return res.sendStatus(404); 
+    }
+
+    
+    const image = req.file ? req.file.filename : existingArticle.image;
+
+    const updateData = {
+      title,
+      description,
+      content,
+      image,
+    };
+
+    const isUpdated = await updateArticle(req.params.id, updateData);
     return res.sendStatus(isUpdated ? 204 : 404);
   } catch (error) {
-    console.error("Error updating article:", error);
+    console.error("Update error:", error);
     return res.sendStatus(422);
   }
 });
