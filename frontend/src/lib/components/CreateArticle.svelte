@@ -37,7 +37,7 @@
     </div>
     <div>
       <label for="image">Image:</label>
-      <input type="file" id="image" bind:files={image} accept="image/*" required />
+      <input class='img' type="file" id="image" bind:files={image} accept="image/*" required />
     </div>
     <button type="submit">Add Article</button>
   </form>
@@ -56,6 +56,10 @@
     gap: 16px;
   }
 
+  .img {
+    background-color: white;
+  }
+
   input,
   textarea {
     width: 100%;
@@ -66,7 +70,7 @@
 
   button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: var(--orange);
     color: white;
     border: none;
     border-radius: 4px;

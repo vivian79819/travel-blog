@@ -52,20 +52,31 @@
 {/if}
 </div>
 <style>
-  h2 {
-    text-align: center;
-  }
+ h2 {
+  text-align: center;
+  color: #1a1a1a;
+  font-size: 1.75rem;
+  margin: 0 0 1.5rem 0;
+  font-style: italic;
+}
 
-  p{
-    
-    grid-column: 1 / 3;
-    font-weight: bold;
-    background-color: plum;
-    padding: 5px;
-    text-align: center;
-  }
-  .sign-up{
-    min-height: 100vh;
-    padding-bottom:50px;
-  }
+.sign-up {
+  margin: 1rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: none;
+  min-height: calc(100vh - 4rem);
+  padding-bottom: 50px;
+}
+
+p {
+  grid-column: 1 / 3;
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+}
 </style>
