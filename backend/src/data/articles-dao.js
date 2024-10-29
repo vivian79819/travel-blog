@@ -97,3 +97,21 @@ export async function deleteArticleById(id) {
   await db.run("DELETE FROM Articles WHERE id = ?", id);
   return true;
 }
+
+async function addLike(userId, articleId) {
+    const query = `
+        INSERT INTO Likes (user_id, article_id)
+        VALUES (?, ?)
+        ON CONFLICT(user_id, article_id) DO NOTHING;
+    `;
+    
+    return new Promise((resolve, reject) => {
+        db.run(query, [userId, articleId], function (error) {
+            if (error) {
+                console.error('Error adding like:', error);
+                return reject({ success: false, message: 'Failed to add like' });
+            }
+            resolve({ success: true });
+        });
+    });
+}

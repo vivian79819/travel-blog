@@ -3,6 +3,7 @@ import { getArticles, getArticleById, deleteArticleById,createArticle,updateArti
 import { requiresAuthentication } from "../../middleware/auth-middleware.js";
 import multer from 'multer';
 import path from 'path';
+import { addLike } from './data/articles-dao/addLike.js'
 
 const router = express.Router();
 
@@ -106,5 +107,26 @@ router.patch("/:id", upload.single('image'), async (req, res) => {
     return res.sendStatus(422);
   }
 });
+
+
+const { addLike } = require('./data/articles-dao/addLike'); 
+
+router.post("/:id/like", requiresAuthentication, async (req, res) => {
+    const userId = req.user.id;
+    const articleId = req.params.id;
+
+    try {
+        const result = await addLike(userId, articleId);
+
+        if (result.success) {
+            return res.status(201).json({ message: 'Like added successfully' });
+        } else {
+            return res.status(500).json({ message: result.message });
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+});
+
 
 export default router;
