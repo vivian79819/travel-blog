@@ -40,7 +40,7 @@
     </div>
 
     <div class="action-buttons">
-      <button class="edit-button" title="Edit your article" on:click|preventDefault>Edit</button>
+      
       <button
         class="delete-button"
         title="Delete your article"
@@ -178,7 +178,7 @@
     gap: 10px;
   }
 
-  .edit-button,
+  
   .delete-button {
     background-color: var(--purple-dark);
     color: white;
@@ -193,12 +193,12 @@
     background-color: #ff5555;
   }
 
-  .edit-button:hover,
+  
   .delete-button:hover {
     opacity: 0.8;
   }
 
-  .edit-button,
+ 
   .delete-button {
     z-index: 10;
     position: relative;

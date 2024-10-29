@@ -1,4 +1,5 @@
 import { getDatabase } from "./database.js";
+import { updateDatabase } from "./util.js";
 import yup from "yup";
 export async function getArticles() {
   const db = await getDatabase();
@@ -20,8 +21,7 @@ const updateArticleSchema = yup
     title: yup.string().min(1).optional(),
     description: yup.string().min(1).optional(),
     content: yup.string().min(1).optional(),
-    image: yup.string().min().optional(),
-    userId: yup.string().min(1).optional(),
+    image:yup.mixed().optional()
   })
   .required();
 
@@ -34,7 +34,7 @@ export async function updateArticle(id, udpateData) {
   });
 
   const db = await getDatabase();
-  const dbResult = await updateDatabase(db, "Articles", parsedUpdateData, id);
+  const dbResult = await updateDatabase(db, "Articles", parsedUpdateData, parseInt(id));
 
 
   return dbResult.changes > 0;
