@@ -40,6 +40,7 @@ VALUES
 
 
 INSERT INTO Articles (title, description, content, image, userId, date) VALUES
+
 (
     '10 Days in Bali: A Journey of Discovery',
     'Exploring the hidden gems of Indonesia''s paradise island',
@@ -71,4 +72,52 @@ INSERT INTO Articles (title, description, content, image, userId, date) VALUES
     '6.jpg',
     4,
     '2024-08-01'
+),
+(
+    'Exploring the Ancient Ruins of Machu Picchu',
+    'A trek through history in Peru',
+    'Machu Picchu is not just a destination but a journey through time. This article chronicles our hike along the Inca Trail and the breathtaking views awaiting us at the top.',
+    '12.jpg',
+    1,
+    '2024-07-20'
+),
+(
+    'A Road Trip Through the Canadian Rockies',
+    'Nature’s grandeur in Western Canada',
+    'Join us on an unforgettable road trip through the Canadian Rockies, where stunning landscapes, crystal-clear lakes, and diverse wildlife await around every corner.',
+    '20.jpg',
+    2,
+    '2024-06-10'
+),
+(
+    'Island Hopping in the Greek Cyclades',
+    'A sun-soaked journey through Greece',
+    'Experience the beauty of the Greek islands with our guide to island hopping in the Cyclades. Discover pristine beaches, charming villages, and rich history.',
+    '6.jpg',
+    3,
+    '2024-05-05'
+),
+(
+    'Wildlife Safari in Kenya',
+    'An adventure into the heart of Africa',
+    'Join us as we explore the breathtaking landscapes of Kenya and witness the majestic wildlife that roams freely in national parks and reserves.',
+    '12.jpg',
+    4,
+    '2024-04-12'
+),
+(
+    'Discovering Japan: A Cultural Odyssey',
+    'From bustling Tokyo to serene Kyoto',
+    'Travel through Japan and immerse yourself in its rich culture, from the vibrant city life in Tokyo to the peaceful temples of Kyoto.',
+    '20.jpg',
+    1,
+    '2024-03-01'
+),
+(
+    'The Wonders of New Zealand: Nature at Its Best',
+    'Adventure in the Land of the Long White Cloud',
+    'Explore the stunning landscapes of New Zealand, from the fjords of Milford Sound to the geothermal wonders of Rotorua, in this comprehensive travel guide.',
+    '6.jpg',
+    2,
+    '2024-02-10'
 );
