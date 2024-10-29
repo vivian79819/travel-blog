@@ -4,6 +4,7 @@
   import ArticleCard from '$lib/components/ArticleCard.svelte';
   import { PUBLIC_IMAGES_URL } from "$env/static/public";
   import MessageView from "$lib/components/MessageView.svelte";
+  import SearchBox from '$lib/components/Search.svelte';
   export let data;
   $: articles = data.articles || [];
   $: userArticles = data.isLoggedIn ? articles.filter(article => article.userId === data.user.id) : [];
@@ -17,6 +18,7 @@
 </svelte:head>
 
 <main>
+  <SearchBox {articles} />
   {#if data.isLoggedIn}
     <div class="welcome">
       <h1>Welcome back, {data.user.firstName}!</h1>
