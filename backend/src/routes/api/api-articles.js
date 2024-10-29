@@ -78,4 +78,16 @@ router.delete("/:id", requiresAuthentication, async (req, res) => {
   }
 });
 
+
+router.patch("/:id", requiresAuthentication, async (req, res) => {
+  const articleId = req.params.id;
+  try {
+    const isUpdated = await updateArticle(articleId, req.body);
+    return res.sendStatus(isUpdated ? 204 : 404);
+  } catch (error) {
+    console.error("Error updating article:", error);
+    return res.sendStatus(422);
+  }
+});
+
 export default router;

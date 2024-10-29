@@ -12,6 +12,35 @@ export async function getArticles() {
   return articles;
 }
 
+/**
+ * Schema for "update article". 
+ */
+const updateArticleSchema = yup
+  .object({
+    title: yup.string().min(1).optional(),
+    description: yup.string().min(1).optional(),
+    content: yup.string().min(1).optional(),
+    image: yup.string().min().optional(),
+    userId: yup.string().min(1).optional(),
+  })
+  .required();
+
+
+export async function updateArticle(id, udpateData) {
+  
+  const parsedUpdateData = updateArticleSchema.validateSync(udpateData, {
+    abortEarly: false,
+    stripUnknown: true
+  });
+
+  const db = await getDatabase();
+  const dbResult = await updateDatabase(db, "Articles", parsedUpdateData, id);
+
+
+  return dbResult.changes > 0;
+}
+
+
 export const createArticleSchema = yup.object({
   title: yup.string().required("Title is required"),
   description: yup.string().required("Description is required"),
