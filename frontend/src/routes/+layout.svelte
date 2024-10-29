@@ -65,10 +65,10 @@
 
 <style>
   nav {
-    background-color: rgb(178, 168, 234);
+    
     padding-left: 20px;
     padding-right: 20px;
-    box-shadow: 0 5px 3px lightgray;
+    /* box-shadow: 0 5px 3px lightgray; */
     display: flex;
 
     & > ul {
@@ -82,13 +82,13 @@
     & li {
       padding: 10px;
 
-      &:hover {
+      /* &:hover {
         background-color: rgba(255, 255, 255, 0.2);
-      }
+      } */
     }
 
     & :is(a, button) {
-      color: white;
+      color: black;
       font-size: 1.2rem;
       font-weight: bold;
       text-decoration: none;
@@ -96,6 +96,7 @@
       border: 0;
       padding: 0;
       font-family: inherit;
+      font-family: "Dancing Script", cursive;
       cursor: pointer;
 
       &.active {

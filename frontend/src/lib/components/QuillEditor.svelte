@@ -43,5 +43,7 @@
     min-height: 200px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: white;
   }
+ 
 </style>

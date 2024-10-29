@@ -23,9 +23,9 @@
 <style>
   .action-btn {
     color:white;
-    background-color: rgb(247, 119, 141);
+    background-color:var(--orange);
     padding: 10px;
-    border: 3px solid rgb(211, 135, 211);
+  
     text-decoration: none;
     border-radius: 10px;
     box-shadow: 3px 3px 5px rgba(168, 106, 106, 0.5);
