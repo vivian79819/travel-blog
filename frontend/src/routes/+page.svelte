@@ -5,6 +5,8 @@
   import { PUBLIC_IMAGES_URL } from "$env/static/public";
   import MessageView from "$lib/components/MessageView.svelte";
   import SearchBox from '$lib/components/Search.svelte';
+  import Banner from '../lib/components/Banner.svelte';
+  import Footer from '../lib/components/Footer.svelte';
   export let data;
   $: articles = data.articles || [];
   $: userArticles = data.isLoggedIn ? articles.filter(article => article.userId === data.user.id) : [];
@@ -18,6 +20,7 @@
 </svelte:head>
 
 <main>
+  <Banner />
   <SearchBox {articles} />
   {#if data.isLoggedIn}
     <div class="welcome">
@@ -66,6 +69,7 @@
       </section>
     {/if}
   </section>
+  <Footer />
 </main>
 
 <style>
@@ -153,6 +157,7 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 24px;
     margin-top: 24px;
+    margin-bottom: 24px;
   }
 
   .all-articles {
