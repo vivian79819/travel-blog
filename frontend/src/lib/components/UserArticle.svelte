@@ -5,6 +5,8 @@
   import { goto, invalidateAll } from "$app/navigation";
   let featured = false;
 
+  let confirmingDelete = false;
+
   async function handleDelete() {
     try {
       const response = await fetch(`${PUBLIC_API_BASE_URL}/articles/${article.id}`, {
@@ -21,36 +23,65 @@
       console.error(error);
     }
   }
+
+  function handleDeleteClick() {
+    confirmingDelete = true;
+  }
+
+  function cancelDelete() {
+    confirmingDelete = false;
+  }
 </script>
 
-<a href={`/article/${article.id}`} class="article-card {featured ? 'featured' : ''}">
-  <img class="img" src={`${PUBLIC_IMAGES_URL}/${article.image}`} alt={article.title} />
-  <div class="info">
-    <h2>{article.title}</h2>
-    <p class="desc">{article.description}</p>
-    {#if featured}
-      <p class="content">{article.content.substring(0, 120)}...</p>
-    {/if}
-    <div class="user">
-      <img class="avatar" src={`${PUBLIC_IMAGES_URL}/${user.selectedAvatar}`} alt={user.username} />
-      <div class="details">
-        <span class="username">{user.username}</span>
-        <span class="date">{article.date}</span>
+<div class="article-container">
+  <a href={`/article/${article.id}`} class="article-card {featured ? 'featured' : ''}">
+    <img class="img" src={`${PUBLIC_IMAGES_URL}/${article.image}`} alt={article.title} />
+    <div class="info">
+      <h2>{article.title}</h2>
+      <p class="desc">{article.description}</p>
+      {#if featured}
+        <p class="content">{article.content.substring(0, 120)}...</p>
+      {/if}
+      <div class="user">
+        <img
+          class="avatar"
+          src={`${PUBLIC_IMAGES_URL}/${user.selectedAvatar}`}
+          alt={user.username}
+        />
+        <div class="details">
+          <span class="username">{user.username}</span>
+          <span class="date">{article.date}</span>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button
+          class="delete-button"
+          title="Delete your article"
+          on:click|preventDefault={handleDeleteClick}>Delete</button
+        >
       </div>
     </div>
-
-    <div class="action-buttons">
-      
-      <button
-        class="delete-button"
-        title="Delete your article"
-        on:click|preventDefault={handleDelete}>Delete</button
-      >
+  </a>
+  {#if confirmingDelete}
+    <div class="confirm-delete">
+      <p>Are you sure you want to delete this article?</p>
+      <button on:click|stopPropagation={handleDelete} class="btn-confirm">Confirm</button>
+      <button on:click|stopPropagation={cancelDelete} class="btn-cancel">Cancel</button>
     </div>
-  </div>
-</a>
+  {/if}
+</div>
 
 <style>
+   .article-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
   .article-card {
     display: flex;
     flex-direction: column;
@@ -178,7 +209,6 @@
     gap: 10px;
   }
 
-  
   .delete-button {
     background-color: var(--purple-dark);
     color: white;
@@ -193,12 +223,10 @@
     background-color: #ff5555;
   }
 
-  
   .delete-button:hover {
     opacity: 0.8;
   }
 
- 
   .delete-button {
     z-index: 10;
     position: relative;
