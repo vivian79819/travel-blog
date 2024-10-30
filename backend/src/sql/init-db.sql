@@ -1,6 +1,7 @@
 
 DROP TABLE IF EXISTS Users;
 DROP TABLE IF EXISTS Articles;
+DROP TABLE IF EXISTS Likes;
 
 
 CREATE TABLE Users (
@@ -28,6 +29,14 @@ CREATE TABLE Articles (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+CREATE TABLE Likes (
+    id INTEGER PRIMARY KEY,  
+    user_id INTEGER,
+    article_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
+    FOREIGN KEY (article_id) REFERENCES Articles(id) ON DELETE CASCADE
+);
+
 
 
 INSERT INTO Users (username, firstName, lastName, password, blurb, selectedAvatar, email, dob)
