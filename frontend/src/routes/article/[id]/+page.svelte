@@ -4,7 +4,7 @@
   const id = data.articleId;
   const isLoggedIn = data.isLoggedIn;
   const user = data.user;
- 
+  import LikeButton from "$lib/components/LikeButton.svelte";
   import { goto } from "$app/navigation";
   function handleEditArticle() {
     goto(`/edit/${id}`);
@@ -28,14 +28,14 @@
       <!--Updated to accommdate Quill editor, to render correct content with HTML-->
       <div class="content">{@html article.content}</div>
 
-
       {#if isLoggedIn && article.userId === user.id}
-      <button class="edit-button" title="Edit your article" on:click={handleEditArticle}>
-        Edit
-      </button>
-    {/if}
-
-
+        <button class="edit-button" title="Edit your article" on:click={handleEditArticle}>
+          Edit
+        </button>
+      {/if}
+      <div class="like-button">
+        <LikeButton {isLoggedIn} {article} />
+      </div>
     </article>
   {:else}
     <h1>Article Not Found</h1>
@@ -46,6 +46,7 @@
 
 <style>
   main {
+    position: relative;
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -78,5 +79,11 @@
 
   .content {
     line-height: 1.6;
+  }
+  .like-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
   }
 </style>
