@@ -97,3 +97,43 @@ export async function deleteArticleById(id) {
   await db.run("DELETE FROM Articles WHERE id = ?", id);
   return true;
 }
+
+export async function addLike(userId, articleId) {
+  const db = await getDatabase();
+  try {
+  // Insert a like entry into the Likes table
+  await db.run(
+ `INSERT INTO Likes (user_id, article_id) VALUES (?, ?)`,
+  userId, articleId
+  );
+  return { success: true, message: 'Article liked successfully' };
+  } catch (error) {
+  // Handle unique constraint violation
+  if (error.code === 'SQLITE_CONSTRAINT') {
+  return { success: false, message: 'You have already liked this article' };
+  }
+  // Handle other errors
+  return { success: false, message: 'Error liking article', error };
+  }
+  }
+
+  export async function deleteLike(userId, articleId) {
+    const db = await getDatabase();
+    await db.run(
+        `DELETE FROM Likes WHERE user_id = ? AND article_id = ?`,
+        userId, articleId
+    );
+}
+
+export async function countLikes(articleId) {
+  const db = await getDatabase();
+  try {
+      const result = await db.get(
+          `SELECT COUNT(*) as likeCount FROM Likes WHERE article_id = ?`,
+          articleId
+      );
+      return { success: true, count: result.likeCount };
+  } catch (error) {
+      return { success: false, message: 'Error counting likes', error };
+  }
+}
