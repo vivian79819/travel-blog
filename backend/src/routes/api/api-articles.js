@@ -4,6 +4,9 @@ import { requiresAuthentication } from "../../middleware/auth-middleware.js";
 import multer from 'multer';
 import path from 'path';
 import { addLike } from './data/articles-dao/addLike.js'
+import { deleteLike } from './data/articles-dao/deleteLike.js'; 
+import { countLikes } from './data/articles-dao/countLikes.js'; 
+
 
 const router = express.Router();
 
@@ -110,16 +113,46 @@ router.patch("/:id", upload.single('image'), async (req, res) => {
 
 
 const { addLike } = require('./data/articles-dao/addLike'); 
-
 router.post("/:id/like", requiresAuthentication, async (req, res) => {
     const userId = req.user.id;
     const articleId = req.params.id;
-
     try {
         const result = await addLike(userId, articleId);
-
         if (result.success) {
-            return res.status(201).json({ message: 'Like added successfully' });
+            return res.status(204).end();
+        } else {
+            return res.status(500).json({ message: result.message });
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+});
+
+
+const { deleteLike } = require('./data/articles-dao/deleteLike'); 
+router.delete("/:id/like", requiresAuthentication, async (req, res) => {
+    const userId = req.user.id;
+    const articleId = req.params.id;
+    try {
+        const result = await deleteLike(userId, articleId);
+        if (result.success) {
+            return res.status(204).end();
+        } else {
+            return res.status(500).json({ message: result.message });
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+});
+
+
+const { countLikes } = require('./data/articles-dao/countLikes'); 
+router.get("/:id/likes", async (req, res) => {
+    const articleId = req.params.id;
+    try {
+        const result = await countLikes(articleId);
+        if (result.success) {
+            return res.status(200).json({ count: result.count });
         } else {
             return res.status(500).json({ message: result.message });
         }
