@@ -132,15 +132,13 @@ export async function deleteLike(userId, articleId) {
 
 export async function getLikeCount(articleId) {
   const db = await getDatabase();
-  try {
+  
     const result = await db.get(
-      `SELECT COUNT(*) as likeCount FROM Likes WHERE article_id = ?`,
+      `SELECT COUNT(*) AS likeCount FROM Likes WHERE article_id = ?`,
       articleId
     );
-    return { success: true, count: result.likeCount };
-  } catch (error) {
-    return { success: false, message: 'Error counting likes', error };
-  }
+    return result.likeCount;
+  
 }
 export async function checkUserLike(userId, articleId) {
   const db = await getDatabase();

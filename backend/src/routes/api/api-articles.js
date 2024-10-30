@@ -1,5 +1,5 @@
 import express from "express";
-import { getArticles, getArticleById, deleteArticleById, createArticle, updateArticle, addLike, deleteLike, getLikeCount } from "../../data/articles-dao.js";
+import { getArticles, getArticleById, deleteArticleById, createArticle, updateArticle, addLike, deleteLike, getLikeCount, checkUserLike } from "../../data/articles-dao.js";
 import { requiresAuthentication } from "../../middleware/auth-middleware.js";
 import multer from 'multer';
 
@@ -134,13 +134,13 @@ router.delete("/:id/like", requiresAuthentication, async (req, res) => {
   const articleId = req.params.id;
   try {
     const result = await deleteLike(userId, articleId);
-    if (result.success) {
-      return res.status(204).end();
-    } else {
-      return res.status(500).json({ message: result.message });
+    if (!result.success) {
+      return res.status(404).json({ message: result.message });
     }
+
+    res.status(200).json({ message: result.message });
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    res.status(500).json({ message: 'Error unliking article' });
   }
 });
 
