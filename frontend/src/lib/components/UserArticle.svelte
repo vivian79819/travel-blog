@@ -14,6 +14,7 @@
         credentials: "include"
       });
       if (response.ok) {
+        confirmingDelete = false;
         await invalidateAll();
         goto("/mypage");
       } else {
