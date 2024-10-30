@@ -20,9 +20,12 @@
 </svelte:head>
 
 <main>
+ {#if !data.isLoggedIn} 
   <Banner />
+ {/if}
+  
   <SearchBox {articles} />
-  {#if data.isLoggedIn}
+ {#if data.isLoggedIn} 
     <div class="welcome">
       <h1>Welcome back, {data.user.firstName}!</h1>
       <div class="info">
@@ -51,7 +54,7 @@
   {/if}
 
   <section class="all-articles">
-    <h2>Travel Stories</h2>
+    <h2>Featured Article</h2>
     
     {#if articles.length === 0}
       <p>Loading articles...</p>
@@ -62,6 +65,7 @@
         </section>
       {/if}
 
+      <h2>Travel Stories</h2>
       <section class="article-grid">
         {#each otherArticles as article (article.id)}
           <ArticleCard {article} />
@@ -95,7 +99,8 @@
   h2 {
     margin: 20px 0;
     color: black;
-    font-size: 40px;
+    font-size: 30px;
+    text-align: center;
   }
 
   .info {

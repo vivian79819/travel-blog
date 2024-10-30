@@ -88,7 +88,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(217, 199, 184, 0.6);
       z-index: 10;
       cursor: pointer;
     }
