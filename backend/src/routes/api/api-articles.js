@@ -112,7 +112,7 @@ router.patch("/:id", upload.single('image'), async (req, res) => {
 });
 
 
-const { addLike } = require('./data/articles-dao/addLike'); 
+
 router.post("/:id/like", requiresAuthentication, async (req, res) => {
     const userId = req.user.id;
     const articleId = req.params.id;
@@ -129,7 +129,7 @@ router.post("/:id/like", requiresAuthentication, async (req, res) => {
 });
 
 
-const { deleteLike } = require('./data/articles-dao/deleteLike'); 
+
 router.delete("/:id/like", requiresAuthentication, async (req, res) => {
     const userId = req.user.id;
     const articleId = req.params.id;
@@ -146,7 +146,7 @@ router.delete("/:id/like", requiresAuthentication, async (req, res) => {
 });
 
 
-const { countLikes } = require('./data/articles-dao/countLikes'); 
+
 router.get("/:id/likes", async (req, res) => {
     const articleId = req.params.id;
     try {
