@@ -22,6 +22,7 @@
 </script>
 
 <main>
+  <div class="create-container">
   <form on:submit|preventDefault={handleSubmit} enctype="multipart/form-data">
     <div>
       <label for="title">Title:</label>
@@ -41,12 +42,15 @@
     </div>
     <button type="submit">Add Article</button>
   </form>
+  </div>
 </main>
 
 <style>
+
   main {
+    margin-top: 100px;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 60px auto;
     padding: 20px;
   }
 
@@ -58,17 +62,21 @@
 
   .img {
     background-color: white;
+    width: 98%;
   }
 
   input,
   textarea {
-    width: 100%;
+    width:98%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
 
   button {
+    margin-top: 10px;
+    font-family: "Roboto";
+    font-size: 14px;
     padding: 10px 20px;
     background-color: var(--orange);
     color: white;
@@ -76,6 +84,10 @@
     border-radius: 4px;
     cursor: pointer;
   }
+
+  label{
+    font-family: "roboto";
+      }
 
   button:hover {
     background-color: #0056b3;
