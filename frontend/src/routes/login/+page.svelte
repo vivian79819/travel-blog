@@ -66,9 +66,9 @@ form {
 h1 {
   text-align: center;
   color: black;
-  font-size: 1.75rem;
-  margin: 0 0 1.5rem 0;
-  font-style: italic;
+  font-size: 2rem;
+  margin: 30px 0 1.5rem 0;
+
 }
 
 
@@ -98,32 +98,27 @@ input:focus {
 
 
 button {
-  width: 100%;
-  padding: 0.75rem 1.5rem;
-  background-color:var(--orange);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.15s ease;
-  margin-top: 0.5rem;
+  padding: 8px 16px;
+      background-color: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s;
+
+      &:hover {background-color: var(--nuetral);
+      color: var(--orange);
+      border: 1px solid var(--orange);
+  }
 }
 
-button:hover {
-  background-color: #0077cc;
-}
-
-button:active {
-  background-color: #006bb3;
-}
 
 
 .error {
-  background-color: #fee2e2;
-  border: 1px solid #fecaca;
-  color: #dc2626;
+  background-color: var(--beige);
+  border: 1px solid var(--neutral);
+  color: black;
   padding: 0.75rem;
   border-radius: 6px;
   font-size: 0.875rem;

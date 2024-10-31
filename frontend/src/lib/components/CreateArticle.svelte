@@ -38,7 +38,7 @@
     </div>
     <div>
       <label for="image">Image:</label>
-      <input class='img' type="file" id="image" bind:files={image} accept="image/*" required />
+            <input class='img' type="file" id="image" bind:files={image} accept="image/*" required />
     </div>
     <button type="submit">Add Article</button>
   </form>
@@ -74,22 +74,20 @@
   }
 
   button {
-    margin-top: 10px;
-    font-family: "Roboto";
-    font-size: 14px;
-    padding: 10px 20px;
-    background-color: var(--orange);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    padding: 8px 16px;
+      background-color: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s;
+
+      &:hover {background-color: var(--nuetral);
+      color: var(--orange);
+      border: 1px solid var(--orange);
+  }
   }
 
-  label{
-    font-family: "roboto";
-      }
 
-  button:hover {
-    background-color: #0056b3;
-  }
 </style>
