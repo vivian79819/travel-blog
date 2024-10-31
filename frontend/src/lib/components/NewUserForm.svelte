@@ -154,7 +154,7 @@ textarea {
 }
 
 input::placeholder {
-  color: #94a3b8;
+  color: var(--orange);
 }
 
 .avatar-selection {
