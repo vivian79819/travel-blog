@@ -20,9 +20,7 @@
 </svelte:head>
 
 <main>
- {#if !data.isLoggedIn} 
-  <Banner />
- {/if}
+
   
   <SearchBox {articles} />
  {#if data.isLoggedIn} 
@@ -52,6 +50,10 @@
       </div>
     </div>
   {/if}
+
+  {#if !data.isLoggedIn} 
+  <Banner />
+ {/if}
 
   <section class="all-articles">
     <h2>Featured Article</h2>
@@ -100,7 +102,7 @@
     margin: 20px 0;
     color: black;
     font-size: 30px;
-    text-align: center;
+    /* text-align: center; */
   }
 
   .info {
