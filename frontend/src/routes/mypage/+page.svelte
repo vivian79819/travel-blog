@@ -46,15 +46,22 @@
   
   <style>
   .action-btn {
-    color: white;
-    background-color: var(--orange);
-    padding: 10px;
+    margin: 5px;
+    padding: 8px 16px;
     text-decoration: none;
-    border-radius: 10px;
-    box-shadow: 3px 3px 5px rgba(168, 106, 106, 0.5);
-    &:hover {
-      background-color: rgb(244, 52, 84);
-    }
+      background-color: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s;
+
+      &:hover {background-color: var(--nuetral);
+      color: var(--orange);
+      border: 1px solid var(--orange);
+  }
+
   }
   
   .welcome {
