@@ -3,7 +3,7 @@
   export let user;
   import { PUBLIC_IMAGES_URL, PUBLIC_API_BASE_URL } from "$env/static/public";
   import { goto, invalidateAll } from "$app/navigation";
-  let featured = false;
+ 
 
   let confirmingDelete = false;
 
@@ -35,14 +35,14 @@
 </script>
 
 <div class="article-container">
-  <a href={`/article/${article.id}`} class="article-card {featured ? 'featured' : ''}">
+  <a href={`/article/${article.id}`} class="article-card">
     <img class="img" src={`${PUBLIC_IMAGES_URL}/${article.image}`} alt={article.title} />
     <div class="info">
       <h2>{article.title}</h2>
       <p class="desc">{article.description}</p>
-      {#if featured}
-        <p class="content">{article.content.substring(0, 120)}...</p>
-      {/if}
+      
+        <p class="content">{@html article.content.substring(0, 120)}...</p>
+    
       <div class="user">
         <img
           class="avatar"
