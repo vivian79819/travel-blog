@@ -4,7 +4,7 @@
   import { page } from "$app/stores";
   import { invalidateAll } from "$app/navigation";
   
-  // Add for mobile menu
+
   let isMenuOpen = false;
   function toggleMenu() {
      isMenuOpen = !isMenuOpen;
