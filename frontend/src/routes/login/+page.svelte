@@ -68,7 +68,7 @@ h1 {
   color: black;
   font-size: 1.75rem;
   margin: 0 0 1.5rem 0;
-  font-style: italic;
+
 }
 
 
@@ -116,9 +116,9 @@ button {
 
 
 .error {
-  background-color: #fee2e2;
-  border: 1px solid #fecaca;
-  color: #dc2626;
+  background-color: var(--beige);
+  border: 1px solid var(--neutral);
+  color: black;
   padding: 0.75rem;
   border-radius: 6px;
   font-size: 0.875rem;
