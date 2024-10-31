@@ -145,14 +145,12 @@
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.2s;
+
+    &:hover {background-color: var(--nuetral);
+      color: var(--orange);
+      border: 1px solid var(--orange);
   }
-
-  .article-btn:hover {
-    background-color: #0056b3;
   }
-
-
-
   .featured {
     margin-bottom: 40px;
     
