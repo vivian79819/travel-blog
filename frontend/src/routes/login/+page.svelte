@@ -66,8 +66,8 @@ form {
 h1 {
   text-align: center;
   color: black;
-  font-size: 1.75rem;
-  margin: 0 0 1.5rem 0;
+  font-size: 2rem;
+  margin: 30px 0 1.5rem 0;
 
 }
 

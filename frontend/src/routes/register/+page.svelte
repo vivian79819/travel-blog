@@ -55,9 +55,9 @@
  h2 {
   text-align: center;
   color: #1a1a1a;
-  font-size: 1.75rem;
-  margin: 0 0 1.5rem 0;
-  font-style: italic;
+  font-size: 2rem;
+  margin: 30px 0 1.5rem 0;
+  
 }
 
 .sign-up {
