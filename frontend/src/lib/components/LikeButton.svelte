@@ -104,9 +104,14 @@
     color: #007bff;
   }
 
-  .like-button:disabled, .share-button {
+  .like-button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+  }
+
+  .share-button {
+    background-color: #ccc;
+  
   }
 
   .like-count {
