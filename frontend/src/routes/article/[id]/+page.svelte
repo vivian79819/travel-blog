@@ -158,7 +158,9 @@
   }
   
   .share-button:hover {
-      background-color: #45a049;
+      background-color: var(--nuetral);
+      color: var(--orange);
+      border: 1px solid var(--orange);
   }
   
   .social-button {
