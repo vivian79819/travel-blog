@@ -211,25 +211,21 @@
   }
 
   .delete-button {
-    background-color: var(--purple-dark);
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 3px;
-    font-size: 0.8rem;
-  }
+      z-index: 10;
+      position: relative;
+      padding: 8px 16px;
+      background-color: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s;
 
-  .delete-button {
-    background-color: #ff5555;
+      &:hover {background-color: var(--nuetral);
+      color: var(--orange);
+      border: 1px solid var(--orange);
   }
+}
 
-  .delete-button:hover {
-    opacity: 0.8;
-  }
-
-  .delete-button {
-    z-index: 10;
-    position: relative;
-  }
 </style>

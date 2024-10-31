@@ -194,6 +194,11 @@ button[type="submit"] {
   cursor: pointer;
   transition: background-color 0.15s ease;
   margin-top: 0.5rem;
+
+      &:hover {background-color: var(--nuetral);
+      color: var(--orange);
+      border: 1px solid var(--orange);
+  }
 }
 
 button[type="submit"]:disabled {

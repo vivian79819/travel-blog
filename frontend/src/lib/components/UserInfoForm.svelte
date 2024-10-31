@@ -273,40 +273,38 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-.btn-edit,
+
 .btn-save {
-  padding: 0.75rem 1.5rem;
-  background-color: var(--orange);
-  color: white;
-  border: 1px solid white;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.15s ease;
+  padding: 8px 16px;
+      background-color: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s;
+
+      &:hover {background-color: var(--nuetral);
+      color: var(--orange);
+      border: 1px solid var(--orange);
+}
 }
 
-.btn-delete {
-  padding: 0.75rem 1.5rem;
-  background-color: var(--orange);
-  color: white;
-  border: 1px solid white;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.15s ease;
-}
+.btn-delete, .btn-edit {
+  padding: 8px 16px;
+      background-color: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s;
 
-.btn-edit:hover,
-.btn-save:hover {
-  background-color: #0077cc;
+      &:hover {background-color: var(--nuetral);
+      color: var(--orange);
+      border: 1px solid var(--orange);
+  }
 }
-
-.btn-delete:hover {
-  background-color: #dc2626;
-}
-
 img {
   width: 40px;
   height: 40px;
@@ -355,7 +353,7 @@ img {
 .confirm-delete {
   margin-top: 1rem;
   padding: 1rem;
-  background-color: var(--orange);
+  background-color: var(--beige);
    
   border-radius: 6px;
   text-align: center
@@ -363,12 +361,11 @@ img {
 
 .confirm-delete p {
   margin-bottom: 1rem;
-  color: white;
+  color: black;
 }
 
 .btn-confirm {
   background-color: var(--orange);
-
   margin-right: 0.5rem;
 }
 
@@ -385,5 +382,11 @@ img {
   font-weight: 500;
   font-size: 0.875rem;
   cursor: pointer;
+
+  
+  &:hover {background-color: var(--nuetral);
+      color: var(--orange);
+      border: 1px solid var(--orange);
+  }
 }
 </style>
