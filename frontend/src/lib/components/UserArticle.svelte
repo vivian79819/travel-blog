@@ -228,4 +228,22 @@
   }
 }
 
+    .btn-confirm, .btn-cancel{
+
+      padding: 8px 16px;
+      background-color: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s;
+
+      &:hover {background-color: var(--nuetral);
+      color: var(--orange);
+      border: 1px solid var(--orange);
+  }
+
+}
+
 </style>
