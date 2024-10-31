@@ -39,8 +39,23 @@
       console.error("Error toggling like:", error);
     }
   }
+  function shareWebpage() { 
+    if (navigator.share) { 
+      navigator.share({ 
+        title: article.title, 
+        text: article.summary, 
+        url: window.location.href 
+      }).then(() => { console.log('Thanks for sharing!');
 
+       }).catch((error) => { 
+        console.error('Error sharing:', error); 
+      }); 
+    } else { 
+      console.log('Web Share API not supported in this browser.'); 
+    } 
+  }
   onMount(fetchLikeData);
+  
 </script>
 
 <div class="like-container">
@@ -56,6 +71,14 @@
   {#if likeCount > 0}
     <span class="like-count">{likeCount}</span>
   {/if}
+
+  <button 
+  class="share-button" 
+  title="Share this article" 
+  on:click={shareWebpage} 
+  > 
+  Share this Article
+</button>
 </div>
 
 <style>
@@ -64,7 +87,7 @@
     align-items: center;
   }
 
-  .like-button {
+  .like-button, .share-button {
     margin-right: 8px;
     padding: 6px 12px;
     border: none;
@@ -76,12 +99,12 @@
       color 0.3s;
   }
 
-  .like-button:hover {
+  .like-button:hover, .share-button:hover {
     background-color: #e0e0e0;
     color: #007bff;
   }
 
-  .like-button:disabled {
+  .like-button:disabled, .share-button {
     background-color: #ccc;
     cursor: not-allowed;
   }
@@ -90,4 +113,11 @@
     font-weight: bold;
     color: #333;
   }
+
+  .share-button {
+    font-weight: bold;
+    color:brown;
+  }
+  
+  
 </style>
