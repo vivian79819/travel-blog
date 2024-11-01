@@ -217,7 +217,7 @@
     border: 2px solid transparent;
     padding: 2px;
     border-radius: 50%;
-    cursor: pointer;
+    
     background-color: transparent;
   }
 
@@ -240,7 +240,7 @@
     border-radius: 6px;
     font-weight: 500;
     font-size: 1rem;
-    cursor: pointer;
+    
     transition: background-color 0.15s ease;
     margin-top: 0.5rem;
 

@@ -144,7 +144,7 @@
   padding: 0;
   font-family: inherit;
   font-family: "Dancing Script", cursive;
-  cursor: pointer;
+  
   &.active {
   text-decoration: underline;
   }
@@ -172,7 +172,7 @@
      display: none;
      background: none;
      border: none;
-     cursor: pointer;
+     
      padding: 15px;
      z-index: 1001;
   }

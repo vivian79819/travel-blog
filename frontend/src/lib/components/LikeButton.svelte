@@ -73,7 +73,7 @@
     border: none;
     border-radius: 4px;
     background-color: #f0f0f0;
-    cursor: pointer;
+    
     transition:
       background-color 0.3s,
       color 0.3s;

@@ -41,3 +41,8 @@ p {
 .ql-toolbar .ql-snow {
   background-color: white !important;
 }
+
+a:hover,
+button:hover {
+  cursor: url('/cursor/click.png'), auto;
+}
