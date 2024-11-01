@@ -22,8 +22,7 @@
 </script>
 
 <main>
-  <h1>Write an Article</h1>
-  <div class="create-container">
+    <div class="create-container">
   <form on:submit|preventDefault={handleSubmit} enctype="multipart/form-data">
     <div>
       <label for="title">Title:</label>
@@ -55,9 +54,6 @@
     padding: 20px;
   }
 
-  h1{
-    text-align: center;
-  }
 
   form {
     display: flex;
