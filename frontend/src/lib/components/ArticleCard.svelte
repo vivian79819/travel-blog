@@ -151,4 +151,26 @@
     .featured .date {
       font-size: 0.9rem;
     }
+    @media (max-width: 768px) {
+  .featured {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .featured .img {
+    width: 100%;
+    height: 200px;
+  }
+
+  .featured .info {
+    width: 100%;
+  }
+
+  .featured h2,
+  .featured .desc,
+  .featured .content {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
   </style>
