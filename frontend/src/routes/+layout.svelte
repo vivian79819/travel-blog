@@ -34,6 +34,25 @@
   window.location.href = "/login";
   }
   }
+
+   /**
+    * Apply global event listeners on the document to dynamically style
+    * cursor icons for all <a> and <button> elements when clicked and released.
+    */
+    onMount(() => {
+      // Listen for mousedown and mouseup on the entire document
+      document.addEventListener('mousedown', (event) => {
+         if (event.target.matches('a, button')) {
+               event.target.style.cursor = 'url("/cursor/clickdown.png"), auto';
+         }
+      });
+
+      document.addEventListener('mouseup', (event) => {
+         if (event.target.matches('a, button')) {
+               event.target.style.cursor = 'url("/cursor/click.png"), auto';
+         }
+      });
+    });
   </script>
   
   <!-- Navigation bar will have Home, Login and Register button when no user is logged in;
