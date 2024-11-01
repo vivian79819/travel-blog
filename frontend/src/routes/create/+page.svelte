@@ -27,4 +27,14 @@
 
 </script>
 
+<h1>Write an Article</h1>
+
 <CreateArticle on:submit={handleAddArticle}/>
+
+<style>
+    h1{
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 50px;
+     }
+</style>

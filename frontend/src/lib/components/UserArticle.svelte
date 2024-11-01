@@ -93,10 +93,9 @@
     width: 100%;
     max-width: 360px;
     margin: 20px auto;
-    background-color: white;
     text-decoration: none;
     color: inherit;
-    background-color: var(--grey-light);
+    background-color: white;
     position: relative;
   }
 

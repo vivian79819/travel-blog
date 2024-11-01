@@ -22,7 +22,7 @@
 </script>
 
 <main>
-  <div class="create-container">
+    <div class="create-container">
   <form on:submit|preventDefault={handleSubmit} enctype="multipart/form-data">
     <div>
       <label for="title">Title:</label>
@@ -53,6 +53,7 @@
     margin: 60px auto;
     padding: 20px;
   }
+
 
   form {
     display: flex;
