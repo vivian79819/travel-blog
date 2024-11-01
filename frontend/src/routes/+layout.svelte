@@ -3,7 +3,7 @@
   import { AUTH_URL } from "$lib/js/api-urls.js";
   import { page } from "$app/stores";
   import { invalidateAll } from "$app/navigation";
-  
+  import { onMount } from 'svelte';
 
   let isMenuOpen = false;
   function toggleMenu() {
