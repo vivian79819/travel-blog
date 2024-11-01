@@ -3,7 +3,7 @@
   import { AUTH_URL } from "$lib/js/api-urls.js";
   import { page } from "$app/stores";
   import { invalidateAll } from "$app/navigation";
-  
+  import { onMount } from 'svelte';
 
   let isMenuOpen = false;
   function toggleMenu() {
@@ -34,6 +34,25 @@
   window.location.href = "/login";
   }
   }
+
+   /**
+    * Apply global event listeners on the document to dynamically style
+    * cursor icons for all <a> and <button> elements when clicked and released.
+    */
+    onMount(() => {
+      // Listen for mousedown and mouseup on the entire document
+      document.addEventListener('mousedown', (event) => {
+         if (event.target.matches('a, button')) {
+               event.target.style.cursor = 'url("/cursor/clickdown.png"), auto';
+         }
+      });
+
+      document.addEventListener('mouseup', (event) => {
+         if (event.target.matches('a, button')) {
+               event.target.style.cursor = 'url("/cursor/click.png"), auto';
+         }
+      });
+    });
   </script>
   
   <!-- Navigation bar will have Home, Login and Register button when no user is logged in;
@@ -125,7 +144,7 @@
   padding: 0;
   font-family: inherit;
   font-family: "Dancing Script", cursive;
-  cursor: pointer;
+  
   &.active {
   text-decoration: underline;
   }
@@ -153,7 +172,7 @@
      display: none;
      background: none;
      border: none;
-     cursor: pointer;
+     
      padding: 15px;
      z-index: 1001;
   }

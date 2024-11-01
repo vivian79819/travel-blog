@@ -44,8 +44,8 @@
       margin: 0 auto;
       background-color: white;
       text-decoration: none;
-    color: inherit;
-    background-color: white;
+      color: inherit;
+      background-color: white;
 
     }
   
