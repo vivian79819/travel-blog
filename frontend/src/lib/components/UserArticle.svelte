@@ -164,43 +164,6 @@
     color: #777;
   }
 
-  .featured {
-    flex-direction: row;
-    max-width: 100%;
-    height: 280px;
-  }
-
-  .featured .img {
-    width: 50%;
-    height: 100%;
-  }
-
-  .featured .info {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .featured h2 {
-    font-size: 1.5rem;
-    margin-bottom: 12px;
-  }
-
-  .featured .desc,
-  .featured .content {
-    font-size: 1rem;
-  }
-
-  .featured .avatar {
-    width: 24px;
-    height: 24px;
-  }
-
-  .featured .username,
-  .featured .date {
-    font-size: 0.9rem;
-  }
 
   /* Action buttons styling */
   .action-buttons {
