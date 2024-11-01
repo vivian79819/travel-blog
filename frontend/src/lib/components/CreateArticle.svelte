@@ -22,6 +22,7 @@
 </script>
 
 <main>
+  <h1>Write an Article</h1>
   <div class="create-container">
   <form on:submit|preventDefault={handleSubmit} enctype="multipart/form-data">
     <div>
@@ -52,6 +53,10 @@
     max-width: 800px;
     margin: 60px auto;
     padding: 20px;
+  }
+
+  h1{
+    text-align: center;
   }
 
   form {

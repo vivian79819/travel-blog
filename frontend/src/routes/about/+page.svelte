@@ -16,3 +16,10 @@
 {#if data.user}
   <UserInfoForm user={data.user} />
 {/if}
+
+<style>
+  h1{
+    text-align: center;
+    margin-top: 50px;
+  }
+</style>
