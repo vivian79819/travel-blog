@@ -16,12 +16,11 @@
   --beige:#f1eae3;
 }
 
-
-
 body {
   
   background-color: var(--beige);
-    font-family:"Open Sans", sans-serif;
+  font-family:"Open Sans", sans-serif;
+  cursor: url('cursor/global.png'), auto;
 }
 
 h2 {
