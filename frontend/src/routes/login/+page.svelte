@@ -47,99 +47,91 @@
 <p>Don't have an Account? <a href="/register">Create yours now.</a></p>
 
 <style>
+  form {
+    margin: 1rem auto;
+    width: 360px;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: none;
+    box-sizing: border-box;
+  }
 
-form {
-  margin: 1rem auto;
-  width: 360px;
-  padding: 2rem;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  border: none;
-  box-sizing: border-box;
-}
+  h1 {
+    text-align: center;
+    color: black;
+    font-size: 2rem;
+    margin: 30px 0 1.5rem 0;
+  }
 
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: black;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
 
-h1 {
-  text-align: center;
-  color: black;
-  font-size: 2rem;
-  margin: 30px 0 1.5rem 0;
+  input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background-color: #f8fafc;
+    transition: border-color 0.15s ease;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
 
-}
+  input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
 
+  button {
+    padding: 8px 16px;
+    background-color: var(--orange);
+    color: white;
+    border: none;
+    border-radius: 4px;
 
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: black;
-  font-weight: 500;
-  font-size: 0.875rem;
-}
+    font-size: 1rem;
+    transition: background-color 0.2s;
 
-input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  background-color: #f8fafc;
-  transition: border-color 0.15s ease;
-  font-size: 1rem;
-  box-sizing: border-box;
-}
-
-input:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-
-button {
-  padding: 8px 16px;
-      background-color: var(--orange);
-      color: white;
-      border: none;
-      border-radius: 4px;
-      
-      font-size: 1rem;
-      transition: background-color 0.2s;
-
-      &:hover {background-color: var(--nuetral);
+    &:hover {
+      background-color: var(--nuetral);
       color: var(--orange);
       border: 1px solid var(--orange);
+    }
   }
-}
 
+  .error {
+    background-color: var(--beige);
+    border: 1px solid var(--neutral);
+    color: black;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    text-align: center;
+  }
 
+  p {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: black;
+  }
 
-.error {
-  background-color: var(--beige);
-  border: 1px solid var(--neutral);
-  color: black;
-  padding: 0.75rem;
-  border-radius: 6px;
-  font-size: 0.875rem;
-  text-align: center;
-}
+  a {
+    color: var(--orange);
+    text-decoration: none;
+    font-weight: 500;
+  }
 
-
-p {
-  text-align: center;
-  margin-top: 1.5rem;
-  color: black;
-}
-
-a {
-  color: var(--orange);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
+  a:hover {
+    text-decoration: underline;
+  }
 </style>

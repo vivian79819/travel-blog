@@ -1,17 +1,13 @@
 <div>
-    <span>Copyright &copy; 2024 Kind Koalas | All Rights Reserved</span>
+  <span>Copyright &copy; 2024 Kind Koalas | All Rights Reserved</span>
 </div>
 
 <style>
-    div {
-       
-        padding: 20px;
+  div {
+    padding: 20px;
+  }
 
-        }
-
-    span{
-       
-        color: var(--dark-brown);
-
-        }
+  span {
+    color: var(--dark-brown);
+  }
 </style>

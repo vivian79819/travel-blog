@@ -26,13 +26,11 @@
       success = false;
       error = true;
       warning = "There was an issue with your input. Please check the form and try again.";
-      
     } else {
       success = false;
       error = true;
       warning = `Unexpected status code received: ${response.status}`;
     }
-
   }
 </script>
 
@@ -42,41 +40,41 @@
 
 <h2>Create Account</h2>
 <div class="sign-up">
-<NewUserForm on:submit={handleAddUser} />
-{#if success}
-  <p style="color: green;">{warning}</p>
-{/if}
+  <NewUserForm on:submit={handleAddUser} />
+  {#if success}
+    <p style="color: green;">{warning}</p>
+  {/if}
 
-{#if error}
-  <p style="color: red;">{warning}</p>
-{/if}
+  {#if error}
+    <p style="color: red;">{warning}</p>
+  {/if}
 </div>
+
 <style>
- h2 {
-  text-align: center;
-  color: #1a1a1a;
-  font-size: 2rem;
-  margin: 30px 0 1.5rem 0;
-  
-}
+  h2 {
+    text-align: center;
+    color: #1a1a1a;
+    font-size: 2rem;
+    margin: 30px 0 1.5rem 0;
+  }
 
-.sign-up {
-  margin: 1rem auto;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  border: none;
-  min-height: calc(100vh - 4rem);
-  padding-bottom: 50px;
-}
+  .sign-up {
+    margin: 1rem auto;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: none;
+    min-height: calc(100vh - 4rem);
+    padding-bottom: 50px;
+  }
 
-p {
-  grid-column: 1 / 3;
-  font-weight: bold;
-  padding: 5px;
-  text-align: center;
-}
+  p {
+    grid-column: 1 / 3;
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
+  }
 </style>

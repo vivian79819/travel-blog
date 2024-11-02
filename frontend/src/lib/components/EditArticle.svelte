@@ -37,7 +37,7 @@
     </div>
     <div>
       <label for="image">Image:</label>
-      {#if image }
+      {#if image}
         <p>Current image file: {article.image}</p>
       {/if}
       <p>If you would like to change the image, please re-upload.</p>
@@ -70,17 +70,18 @@
 
   button {
     padding: 8px 16px;
-      background-color: var(--orange);
-      color: white;
-      border: none;
-      border-radius: 4px;
-      
-      font-size: 1rem;
-      transition: background-color 0.2s;
+    background-color: var(--orange);
+    color: white;
+    border: none;
+    border-radius: 4px;
 
-      &:hover {background-color: var(--beige);
+    font-size: 1rem;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: var(--beige);
       color: var(--orange);
       border: 1px solid var(--orange);
-}
+    }
   }
 </style>

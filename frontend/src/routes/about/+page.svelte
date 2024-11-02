@@ -1,10 +1,8 @@
 <script>
-    
-    import { PUBLIC_API_BASE_URL } from "$env/static/public";
+  import { PUBLIC_API_BASE_URL } from "$env/static/public";
   import UserInfoForm from "$lib/components/UserInfoForm.svelte";
 
   export let data;
-  
 </script>
 
 <svelte:head>
@@ -18,7 +16,7 @@
 {/if}
 
 <style>
-  h1{
+  h1 {
     text-align: center;
     margin-top: 50px;
   }

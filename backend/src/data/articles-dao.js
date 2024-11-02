@@ -14,7 +14,7 @@ export async function getArticles() {
 }
 
 /**
- * Schema for "update article". 
+ * Schema for "update article".
  */
 const updateArticleSchema = yup
   .object({
@@ -25,9 +25,7 @@ const updateArticleSchema = yup
   })
   .required();
 
-
 export async function updateArticle(id, udpateData) {
-
   const parsedUpdateData = updateArticleSchema.validateSync(udpateData, {
     abortEarly: false,
     stripUnknown: true
@@ -36,10 +34,8 @@ export async function updateArticle(id, udpateData) {
   const db = await getDatabase();
   const dbResult = await updateDatabase(db, "Articles", parsedUpdateData, parseInt(id));
 
-
   return dbResult.changes > 0;
 }
-
 
 export const createArticleSchema = yup.object({
   title: yup.string().required("Title is required"),
@@ -50,13 +46,12 @@ export const createArticleSchema = yup.object({
 });
 
 export async function createArticle(articleData) {
-
   const newArticle = createArticleSchema.validateSync(articleData, {
     abortEarly: false,
     stripUnknown: true
   });
   const db = await getDatabase();
-  const date = new Date().toISOString().split('T')[0];
+  const date = new Date().toISOString().split("T")[0];
 
   const dbResult = await db.run(
     `INSERT INTO Articles (title, description, content, image, userId, date)
@@ -71,21 +66,23 @@ export async function createArticle(articleData) {
 
   newArticle.id = dbResult.lastID;
   return newArticle;
-};
-
+}
 
 export async function getArticleById(id) {
   const db = await getDatabase();
-  const article = await db.get(`
+  const article = await db.get(
+    `
     SELECT 
       Articles.*, 
       Users.username, 
       Users.selectedAvatar as userAvatar
     FROM Articles 
     JOIN Users ON Articles.userId = Users.id
-    WHERE Articles.id = ?`, id);
+    WHERE Articles.id = ?`,
+    id
+  );
   return article;
-};
+}
 export async function getArticleByUserId(userId) {
   const db = await getDatabase();
   const articles = await db.all("SELECT * FROM Articles WHERE userId=?", userId);
@@ -102,18 +99,15 @@ export async function addLike(userId, articleId) {
   const db = await getDatabase();
   try {
     // Insert a like entry into the Likes table
-    await db.run(
-      `INSERT INTO Likes (user_id, article_id) VALUES (?, ?)`,
-      userId, articleId
-    );
-    return { success: true, message: 'Article liked successfully' };
+    await db.run(`INSERT INTO Likes (user_id, article_id) VALUES (?, ?)`, userId, articleId);
+    return { success: true, message: "Article liked successfully" };
   } catch (error) {
     // Handle unique constraint violation
-    if (error.code === 'SQLITE_CONSTRAINT') {
-      return { success: false, message: 'You have already liked this article' };
+    if (error.code === "SQLITE_CONSTRAINT") {
+      return { success: false, message: "You have already liked this article" };
     }
     // Handle other errors
-    return { success: false, message: 'Error liking article', error };
+    return { success: false, message: "Error liking article", error };
   }
 }
 
@@ -121,28 +115,28 @@ export async function deleteLike(userId, articleId) {
   const db = await getDatabase();
   const result = await db.run(
     `DELETE FROM Likes WHERE user_id = ? AND article_id = ?`,
-    userId, articleId
+    userId,
+    articleId
   );
   if (result.changes === 0) {
-    return { success: false, message: 'Like not found' };
+    return { success: false, message: "Like not found" };
   }
 
-  return { success: true, message: 'Like removed successfully' };
+  return { success: true, message: "Like removed successfully" };
 }
 
 export async function getLikeCount(articleId) {
   const db = await getDatabase();
-  
-    const result = await db.get(
-      `SELECT COUNT(*) AS likeCount FROM Likes WHERE article_id = ?`,
-      articleId
-    );
-    return result.likeCount;
-  
+
+  const result = await db.get(
+    `SELECT COUNT(*) AS likeCount FROM Likes WHERE article_id = ?`,
+    articleId
+  );
+  return result.likeCount;
 }
 export async function checkUserLike(userId, articleId) {
   const db = await getDatabase();
-  const sql = 'SELECT * FROM Likes WHERE user_Id = ? AND article_Id = ?';
+  const sql = "SELECT * FROM Likes WHERE user_Id = ? AND article_Id = ?";
   const dbResult = await db.all(sql, userId, articleId);
   return dbResult.length > 0;
 }
