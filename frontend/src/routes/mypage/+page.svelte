@@ -9,12 +9,12 @@
 {#if data}
   {#if user}
     <div class="welcome">
-      <h1>Welcome back, {user.firstName || 'User'}!</h1>
+      <h1>Welcome back, {user.firstName || "User"}!</h1>
       <div class="info">
         {#if user.selectedAvatar}
-          <img 
+          <img
             src={`${PUBLIC_IMAGES_URL}/${user.selectedAvatar}`}
-            alt="{user.username}"
+            alt={user.username}
             class="avatar"
           />
         {/if}
@@ -29,12 +29,12 @@
   {/if}
 
   {#if articles && articles.length === 0}
-      <p>You have not created any articles yet. Will you like to write one now?</p>
-      <div class="actions">
-        <a href="/create" class="action-btn">Yes</a>
-        <span>or</span>
-        <a href="/" class="action-btn">Maybe later</a>
-      </div>
+    <p>You have not created any articles yet. Will you like to write one now?</p>
+    <div class="actions">
+      <a href="/create" class="action-btn">Yes</a>
+      <span>or</span>
+      <a href="/" class="action-btn">Maybe later</a>
+    </div>
   {:else if articles}
     <div class="articles-grid">
       {#each articles as article}
@@ -55,7 +55,7 @@
     color: white;
     border: none;
     border-radius: 4px;
-    
+
     font-size: 1rem;
     transition: background-color 0.2s;
   }
@@ -113,10 +113,9 @@
     gap: 24px;
     margin-top: 24px;
     margin-bottom: 24px;
-  } 
+  }
 
   .actions {
     margin-top: 1rem;
   }
-  
 </style>

@@ -10,11 +10,11 @@ const router = express.Router();
  * return an HTTP 200 (OK) response with the given JSON data.
  */
 // router.get("/", (req, res) => {
-  /**
-   * res.json() will return a 200 OK response, with Content-Type = application/json, and a JSON string equal
-   * to the result of calling JSON.stringify() on the given JavaScript object.
-   */
-  // return res.json({ message: "Hello, world!" });
+/**
+ * res.json() will return a 200 OK response, with Content-Type = application/json, and a JSON string equal
+ * to the result of calling JSON.stringify() on the given JavaScript object.
+ */
+// return res.json({ message: "Hello, world!" });
 // });
 
 /**

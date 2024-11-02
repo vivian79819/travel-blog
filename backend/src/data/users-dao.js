@@ -3,11 +3,7 @@ import { getDatabase } from "./database.js";
 import { updateDatabase } from "./util.js";
 import bcrypt from "bcrypt";
 
-
-
- //Gets the user with the given username, if it exists.
-
-
+//Gets the user with the given username, if it exists.
 
 export async function getUserWithUsername(username) {
   const db = await getDatabase();
@@ -35,11 +31,10 @@ export async function getUserWithCredentials(username, password) {
 
   // Return the user if the password is valid; otherwise, return null
   return isPasswordValid ? user : null;
-
 }
 
 /**
- * Schema for "update user". 
+ * Schema for "update user".
  */
 const updateUserSchema = yup
   .object({
@@ -52,18 +47,14 @@ const updateUserSchema = yup
   })
   .required();
 
-
 export async function updateUser(id, udpateData) {
-  
   const parsedUpdateData = updateUserSchema.validateSync(udpateData, {
     abortEarly: false,
     stripUnknown: true
   });
 
- 
   const db = await getDatabase();
   const dbResult = await updateDatabase(db, "Users", parsedUpdateData, id);
-
 
   return dbResult.changes > 0;
 }
@@ -91,7 +82,6 @@ const createUserSchema = yup
  *
  */
 export async function createUser(userData) {
-
   const newUser = createUserSchema.validateSync(userData, {
     abortEarly: false,
     stripUnknown: true

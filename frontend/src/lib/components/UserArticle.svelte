@@ -3,7 +3,6 @@
   export let user;
   import { PUBLIC_IMAGES_URL, PUBLIC_API_BASE_URL } from "$env/static/public";
   import { goto, invalidateAll } from "$app/navigation";
- 
 
   let confirmingDelete = false;
 
@@ -40,9 +39,9 @@
     <div class="info">
       <h2>{article.title}</h2>
       <p class="desc">{article.description}</p>
-      
-        <p class="content">{@html article.content.substring(0, 120)}...</p>
-    
+
+      <p class="content">{@html article.content.substring(0, 120)}...</p>
+
       <div class="user">
         <img
           class="avatar"
@@ -74,7 +73,7 @@
 </div>
 
 <style>
-   .article-container {
+  .article-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -163,7 +162,6 @@
     color: #777;
   }
 
-
   /* Action buttons styling */
   .action-buttons {
     margin-top: 10px;
@@ -173,39 +171,39 @@
   }
 
   .delete-button {
-      z-index: 10;
-      position: relative;
-      padding: 8px 16px;
-      background-color: var(--orange);
-      color: white;
-      border: none;
-      border-radius: 4px;
-      
-      font-size: 1rem;
-      transition: background-color 0.2s;
+    z-index: 10;
+    position: relative;
+    padding: 8px 16px;
+    background-color: var(--orange);
+    color: white;
+    border: none;
+    border-radius: 4px;
 
-      &:hover {background-color: var(--nuetral);
+    font-size: 1rem;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: var(--nuetral);
       color: var(--orange);
       border: 1px solid var(--orange);
+    }
   }
-}
 
-    .btn-confirm, .btn-cancel{
+  .btn-confirm,
+  .btn-cancel {
+    padding: 8px 16px;
+    background-color: var(--orange);
+    color: white;
+    border: none;
+    border-radius: 4px;
 
-      padding: 8px 16px;
-      background-color: var(--orange);
-      color: white;
-      border: none;
-      border-radius: 4px;
-      
-      font-size: 1rem;
-      transition: background-color 0.2s;
+    font-size: 1rem;
+    transition: background-color 0.2s;
 
-      &:hover {background-color: var(--nuetral);
+    &:hover {
+      background-color: var(--nuetral);
       color: var(--orange);
       border: 1px solid var(--orange);
+    }
   }
-
-}
-
 </style>

@@ -39,9 +39,8 @@
       console.error("Error toggling like:", error);
     }
   }
-  
+
   onMount(fetchLikeData);
-  
 </script>
 
 <div class="like-container">
@@ -57,8 +56,6 @@
   {#if likeCount > 0}
     <span class="like-count">{likeCount}</span>
   {/if}
-
-
 </div>
 
 <style>
@@ -73,7 +70,7 @@
     border: none;
     border-radius: 4px;
     background-color: #f0f0f0;
-    
+
     transition:
       background-color 0.3s,
       color 0.3s;
@@ -89,13 +86,8 @@
     cursor: not-allowed;
   }
 
-
-
   .like-count {
     font-weight: bold;
     color: #333;
   }
-
-
-  
 </style>

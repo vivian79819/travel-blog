@@ -1,18 +1,25 @@
-
-
 <script>
-  import ArticleCard from '$lib/components/ArticleCard.svelte';
+  import ArticleCard from "$lib/components/ArticleCard.svelte";
   import { PUBLIC_IMAGES_URL } from "$env/static/public";
   import MessageView from "$lib/components/MessageView.svelte";
-  import SearchBox from '$lib/components/Search.svelte';
-  import Banner from '../lib/components/Banner.svelte';
-  import Footer from '../lib/components/Footer.svelte';
+  import SearchBox from "$lib/components/Search.svelte";
+  import Banner from "../lib/components/Banner.svelte";
+  import Footer from "../lib/components/Footer.svelte";
   export let data;
   $: articles = data.articles || [];
-  $: userArticles = data.isLoggedIn ? articles.filter(article => article.userId === data.user.id) : [];
-  $: otherArticles = data.isLoggedIn ? articles.filter(article => article.userId !== data.user.id) : articles;
-  $: featuredArticle = otherArticles.length > 0 ? otherArticles[Math.floor(Math.random() * otherArticles.length)] : null;
-  $: displayArticles = featuredArticle ? otherArticles.filter(article => article.id !== featuredArticle.id) : otherArticles;
+  $: userArticles = data.isLoggedIn
+    ? articles.filter((article) => article.userId === data.user.id)
+    : [];
+  $: otherArticles = data.isLoggedIn
+    ? articles.filter((article) => article.userId !== data.user.id)
+    : articles;
+  $: featuredArticle =
+    otherArticles.length > 0
+      ? otherArticles[Math.floor(Math.random() * otherArticles.length)]
+      : null;
+  $: displayArticles = featuredArticle
+    ? otherArticles.filter((article) => article.id !== featuredArticle.id)
+    : otherArticles;
 </script>
 
 <svelte:head>
@@ -20,20 +27,22 @@
 </svelte:head>
 
 <main>
-
-  
   <SearchBox {articles} />
- {#if data.isLoggedIn} 
+  {#if data.isLoggedIn}
     <div class="welcome">
       <h1>Welcome back, {data.user.firstName}!</h1>
       <div class="info">
-        <img src={`${PUBLIC_IMAGES_URL}/${data.user.selectedAvatar}`} alt="{data.user.username}" class="avatar"/>
+        <img
+          src={`${PUBLIC_IMAGES_URL}/${data.user.selectedAvatar}`}
+          alt={data.user.username}
+          class="avatar"
+        />
         <div class="details">
           <p class="username">@{data.user.username}</p>
           <p class="blurb">{data.user.blurb}</p>
         </div>
       </div>
-      
+
       <!-- {#if userArticles.length > 0}
         <section class="articles">
           <h2>My Travel Stories</h2>
@@ -44,20 +53,20 @@
           </div>
         </section>
       {/if}  -->
-      
+
       <div class="actions">
         <a href="/create" class="article-btn">Write New Travel Article</a>
       </div>
     </div>
   {/if}
 
-  {#if !data.isLoggedIn} 
-  <Banner />
- {/if}
+  {#if !data.isLoggedIn}
+    <Banner />
+  {/if}
 
   <section class="all-articles">
     <h2>Featured Article</h2>
-    
+
     {#if articles.length === 0}
       <p>Loading articles...</p>
     {:else}
@@ -88,7 +97,7 @@
   .welcome {
     margin-bottom: 40px;
     padding: 20px;
-   
+
     background-color: var(--beige);
     border-radius: 8px;
   }
@@ -146,14 +155,15 @@
     border-radius: 4px;
     transition: background-color 0.2s;
 
-    &:hover {background-color: var(--nuetral);
+    &:hover {
+      background-color: var(--nuetral);
       color: var(--orange);
       border: 1px solid var(--orange);
-  }
+    }
   }
   .featured {
     margin-bottom: 40px;
-    
+
     background-color: var(--neutral);
   }
 
@@ -167,7 +177,5 @@
 
   .all-articles {
     margin-top: 40px;
-   
   }
-  
 </style>

@@ -8,9 +8,8 @@
 
   // Initialize and customize Quill editor after the component mounts
   onMount(async () => {
-        const { default: Quill } = await import("quill");
-        await import("quill/dist/quill.snow.css"); 
-
+    const { default: Quill } = await import("quill");
+    await import("quill/dist/quill.snow.css");
 
     editor = new Quill("#editor", {
       theme: "snow",
@@ -45,5 +44,4 @@
     border-radius: 4px;
     background-color: white;
   }
- 
 </style>

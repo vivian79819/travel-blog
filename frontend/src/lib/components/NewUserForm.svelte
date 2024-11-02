@@ -34,7 +34,7 @@
     if (password.length > 0 && password.length < 6) {
       passwordError = "Password must be at least 6 characters long.";
     } else {
-      passwordError = ""; 
+      passwordError = "";
     }
   }
   function checkPasswords() {
@@ -217,7 +217,7 @@
     border: 2px solid transparent;
     padding: 2px;
     border-radius: 50%;
-    
+
     background-color: transparent;
   }
 
@@ -240,7 +240,7 @@
     border-radius: 6px;
     font-weight: 500;
     font-size: 1rem;
-    
+
     transition: background-color 0.15s ease;
     margin-top: 0.5rem;
 
